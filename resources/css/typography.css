@@ -1,0 +1,33 @@
+@import 'tailwindcss/base';
+
+/* @layer base {
+  article h2 {
+    @apply text-3xl font-bold mb-3;
+  }
+  article h3 {
+    @apply text-2xl font-bold mb-3;
+  }
+  article h4 {
+    @apply text-xl font-bold mb-3;
+  }
+  article h5 {
+    @apply text-lg font-bold mb-3;
+  }
+  article h6 {
+    @apply text-sm font-bold mb-3;
+  }
+  article p {
+    @apply text-justify leading-7 mb-3;
+  }
+
+  article ul {
+    @apply list-disc ml-6 my-3;
+  }
+  article ol {
+    @apply list-decimal ml-6 my-3;
+  }
+  article blockquote {
+    @apply border-l-4 italic text-lg my-8 pl-8 md:pl-12;
+    border-color: #1FACB9;
+  }
+} */

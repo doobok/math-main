@@ -52,11 +52,11 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
             </div>
-            <div class="flex flex-wrap p-4 space-x-1">
-              <a href="#" class="rounded-full p-2 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор з математики</a>
-              <a href="#" class="rounded-full p-2 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор з англійської мови</a>
-              <a href="#" class="rounded-full p-2 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор з фізики</a>
-              <a href="#" class="rounded-full p-2 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор онлайн</a>
+            <div class="flex flex-wrap justify-center p-4 space-x-1">
+              <a href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор з математики</a>
+              <a href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор з англійської мови</a>
+              <a href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор з фізики</a>
+              <a href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор онлайн</a>
 
             </div>
             <button

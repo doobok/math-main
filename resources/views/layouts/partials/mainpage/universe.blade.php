@@ -18,22 +18,22 @@
       ></polygon>
     </svg>
   </div>
-  <div class="container mx-auto px-4 lg:pt-24 lg:pb-24">
+  <div class="container mx-auto px-4 pt-12 lg:pt-24 lg:pb-24">
     <div class="flex flex-wrap text-center justify-center">
       <div class="w-full lg:w-6/12 px-4">
-        <h2 class="text-4xl font-semibold text-white">Наші учні поступають до таких престижних ВУЗів, як:</h2>
+        <h2 class="text-4xl font-semibold text-white">{{__('main.h-univer')}}</h2>
       </div>
     </div>
-    <div class="flex flex-wrap mt-4">
-    @for ($i=0; $i < 5; $i++)
-        <div class="lg:pt-12 pt-6 w-full md:w-1/5 px-4 text-center">
+    <div class="flex flex-wrap justify-center mt-4">
+    @for ($i=1; $i < 6; $i++)
+        <div class="lg:pt-12 pt-6 w-full sm:w-1/2 md:w-1/3 lg:w-1/5 px-4 text-center">
           <div
-            class="flex flex-col min-w-0 break-words w-full items-center justify-center mb-8"
+            class="flex flex-col min-w-0 break-words w-full items-center justify-center mb-4"
           >
           <div class="relative w-46 h-46 mb-4">
-            <img class="shadow-sm" src="/univer/1.png" alt="user image" />
+            <img class="shadow-sm" src="/univer/{{$i}}.png" alt="{{__('main.univer-'. $i)}}" />
           </div>
-          <h6 class="text-lg text-gray-700 font-semibold">Киевский национальный университет имени Тараса Шевченко</h6>
+          <h6 class="text-base md:text-lg text-gray-700 font-semibold">{{__('main.univer-'. $i)}}</h6>
           </div>
         </div>
     @endfor

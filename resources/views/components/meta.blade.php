@@ -3,7 +3,7 @@
 <meta name="description" content="{{ $description }}">
 <meta name="robots" content="index, follow">
 <meta name="author" content="{{ config('app.name') }}">
-<meta name="copyright" content="Copyright (c) 2015-{{ date("Y") }} by {{ config('app.name') }}">
+<meta name="copyright" content="Copyright (c) 2020-{{ date("Y") }} by {{ config('app.name') }}">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@sntl">

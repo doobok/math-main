@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
     @include('layouts.partials.head')
     @yield('head')
@@ -8,7 +8,7 @@
     @include('layouts.partials.topnav')
 
     <main>
-    @yield('main')    
+    @yield('main')
     </main>
 
     @include('layouts.partials.footer')

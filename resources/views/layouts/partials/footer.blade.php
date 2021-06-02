@@ -1,4 +1,4 @@
-<footer class="relative bg-gray-300 pt-8 pb-6">
+<footer class="relative bg-gray-900 pt-8 pb-6">
   <div
     class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
     style="height: 80px;"
@@ -13,7 +13,7 @@
       y="0"
     >
       <polygon
-        class="text-gray-300 fill-current"
+        class="text-gray-900 fill-current"
         points="2560 0 2560 100 0 100"
       ></polygon>
     </svg>
@@ -21,32 +21,19 @@
   <div class="container mx-auto px-4">
     <div class="flex flex-wrap">
       <div class="w-full lg:w-6/12 px-4">
-        <h4 class="text-3xl font-semibold">Let's keep in touch!</h4>
-        <h5 class="text-lg mt-0 mb-2 text-gray-700">
-          Find us on any of these platforms, we respond 1-2 business days.
+        <h4 class="text-3xl font-semibold text-gray-700">Tutor-Math <span class="text-xl">- репетиторський освітній центр</span></h4>
+        <h5 class="text-sm mt-0 mt-2 text-gray-600 uppercase font-semibold">
+          Слідкуй за нами в соціальних мережах
         </h5>
-        <div class="mt-6">
-          <button
-            class="bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-            type="button"
-          >
-            <i class="flex fab fa-twitter"></i></button
-          ><button
-            class="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-            type="button"
-          >
-            <i class="flex fab fa-facebook-square"></i></button
-          ><button
-            class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-            type="button"
-          >
-            <i class="flex fab fa-dribbble"></i></button
-          ><button
-            class="bg-white text-gray-900 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-            type="button"
-          >
-            <i class="flex fab fa-github"></i>
-          </button>
+
+        <div class="my-6 flex">
+          @for ($i=0; $i < 5; $i++)
+            <a href="#" class="text-gray-900 hover:text-gray-400 rounded-full h-12 w-12 flex items-center justify-center bg-gray-700 mr-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+            </a>
+          @endfor
+
+
         </div>
       </div>
       <div class="w-full lg:w-6/12 px-4">
@@ -54,7 +41,7 @@
           <div class="w-full lg:w-4/12 px-4 ml-auto">
             <span
               class="block uppercase text-gray-600 text-sm font-semibold mb-2"
-              >Useful Links</span
+              >Корисні посилання</span
             >
             <ul class="list-unstyled">
               <li>
@@ -132,11 +119,11 @@
     >
       <div class="w-full md:w-4/12 px-4 mx-auto text-center">
         <div class="text-sm text-gray-600 font-semibold py-1">
-          Copyright © 2019 Tailwind Starter Kit by
+          Turor-Math © 2020 - {{date('Y')}} Усі права захищено.
           <a
-            href="https://www.creative-tim.com"
-            class="text-gray-600 hover:text-gray-900"
-            >Creative Tim</a
+            href="#"
+            class="text-gray-600 hover:text-gray-700"
+            >Публічна оферта</a
           >.
         </div>
       </div>

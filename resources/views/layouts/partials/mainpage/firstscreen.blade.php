@@ -15,32 +15,14 @@
     <div class="items-center flex flex-wrap">
       <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
         <div>
-          <h1 class="text-white font-semibold text-2xl md:text-5xl">
+          <h1 class="text-white font-semibold text-2xl md:text-5xl pt-12 md:pt-0">
             Репетиторський освітній центр
           </h1>
           <p class="mt-4 text-lg text-gray-300">
             Навчайся зручно, здобувай освіту ефективно, будь впевненим в майбутньому!
           </p>
-          <div class="pt-8 px-4 flex flex-wrap md:flex-nowrap justify-center">
-            <div class="flex-grow p-2">
-              <input
-                type="text"
-                class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                placeholder="Репетитор з математики"
-                style="transition: all 0.15s ease 0s;"
-              />
-            </div>
-            <div class="flex-none p-2">
-              <button
-                class="bg-green-400 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                type="button"
-                style="transition: all 0.15s ease 0s;"
-              >
-                Обрати репетитора
-              </button>
-            </div>
 
-          </div>
+          <animate-select></animate-select>
 
         </div>
       </div>

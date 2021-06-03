@@ -5,6 +5,8 @@
     @yield('head')
   </head>
   <body class="text-gray-800 antialiased">
+  <div id="app">
+
     @include('layouts.partials.topnav')
 
     <main>
@@ -12,7 +14,9 @@
     </main>
 
     @include('layouts.partials.footer')
-    @include('layouts.partials.js')
+
+  </div>
+  @include('layouts.partials.js')
 
   </body>
 </html>

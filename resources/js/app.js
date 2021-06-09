@@ -6,6 +6,9 @@ import './ml';
 // Vue
 window.Vue = require('vue').default;
 
+// store
+import store from './store/index';
+
 // валидатор форм
 import Vuelidate from 'vuelidate';
 Vue.use(Vuelidate);
@@ -16,4 +19,5 @@ Vue.component('city-select', require('./components/CitySelector.vue').default);
 
 const app = new Vue({
     el: '#app',
+    store
 });

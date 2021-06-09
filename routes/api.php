@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// V1 API
+Route::group(['prefix' => 'v1'], function () {
+  Route::get('get-city', 'App\Http\Controllers\BLController@getCity');
+  Route::get('get-citybyid', 'App\Http\Controllers\BLController@getCityById');
+  Route::get('get-cityes', 'App\Http\Controllers\BLController@getCityes');
 });

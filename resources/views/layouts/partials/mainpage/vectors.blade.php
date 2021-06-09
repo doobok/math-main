@@ -22,7 +22,7 @@
 
     <div class="flex flex-wrap text-center justify-center">
       <div class="w-full lg:w-6/12 px-4">
-        <h2 class="text-4xl font-semibold text-white">Напрямки роботи</h2>
+        <h2 class="text-4xl font-semibold text-white">Напрямки розвитку</h2>
         <p class="text-lg leading-relaxed mt-4 mb-4 text-gray-200">
           Put the potentially record low maximum sea ice extent tihs year
           down to low ice. According to the National Oceanic and

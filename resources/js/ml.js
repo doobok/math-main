@@ -8,12 +8,14 @@ export default new MLCreate({
   languages: [
     new MLanguage('ru').create({
         search: 'Поиск',
+        getTutor: 'Выбрать репетитора',
 
 
     }),
 
     new MLanguage('uk').create({
         search: 'Пошук',
+        getTutor: 'Обрати репетитора',
 
     }),
 

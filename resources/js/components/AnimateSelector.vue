@@ -16,8 +16,8 @@
         type="button"
         style="transition: all 0.15s ease 0s;"
         @click="sendPool"
-      >
-        Обрати репетитора
+      >        
+        {{$ml.get('getTutor')}}
       </button>
     </div>
   </div>

@@ -4,19 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\City;
+use Illuminate\Support\Facades\App;
 
 class BLController extends Controller
 {
     //Get cities
-    public function getCityes()
+    public function getCityes(Request $request)
     {
-      $cityes = City::where('active', 1)->orderBy('order')->get()->translate(\App::getLocale());
-      return $cityes;
+      return City::where('active', 1)->orderBy('order')->get()->translate( $request->locale );
     }
     //Get main city
-    public function getCity()
+    public function getCity(Request $request)
     {
-      $city = City::where('active', 1)->orderBy('order')->first()->translate(\App::getLocale());
+      $city = City::where('active', 1)->orderBy('order')->first()->translate( $request->locale );
       return $city;
     }
     //Get main city by ID
@@ -25,9 +25,9 @@ class BLController extends Controller
         $city = City::where('active', 1)->where('id', $request->id)->first();
         if (!$city) {
           //получаем город по умолчанию
-          return self::getCity();
+          return self::getCity($request);
         }
 
-      return $city->translate(\App::getLocale());
+      return $city->translate( $request->locale );
     }
 }

@@ -1,8 +1,5 @@
 <template>
   <li class="relative list-none p-2 group">
-        <!-- <a class="font-semibold whitespace-no-wrap text-gray-600 hover:text-blue-800" href="http://www.italiansubs.local:8081/forum/moderate/">
-            <span class="firstlevel">Modera</span>
-        </a> -->
         <span class="text-white hover:text-gray-300 ml-2 flex items-center text-xs uppercase font-bold cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/></svg>
           {{lead.cityName}}
@@ -16,17 +13,15 @@
                 {{city.name}}
               </span>
             </li>
-
         </ul>
     </li>
-
-
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 
 export default {
+  props: ['lang'],
   data(){
       return{
         cityes: [],
@@ -35,34 +30,32 @@ export default {
   mounted(){
     this.$store.dispatch('GET_ST_DATA');
     axios
-      .get('/api/v1/get-cityes')
+      .get('/api/v1/get-cityes', {params: {locale: this.$ml.current}})
       .then(response => {
         this.cityes = response.data;
       });
       this.getStartCity();
-
-      // this.$store.dispatch('GET_CITY', this.cityes[0].id);
-
   },
 
   methods:{
     setCity(id){
-      this.$store.dispatch('GET_CITY', id);
+      this.$store.dispatch('GET_CITY', {id: id, locale: this.$ml.current});
     },
     getStartCity(){
-      if (this.lead.cityID == 0) {
-        this.$store.dispatch('GET_CITY', 0);
-      }
+      this.$store.dispatch('GET_CITY', {id: this.lead.cityID, locale: this.$ml.current});
     }
 
   },
   computed: {
-      ...mapGetters(['lead']),
-    }
+    ...mapGetters(['lead']),
+  },
+  // задаем язык
+  created: function(){
+    this.$ml.change(this.lang);
+    this.$store.dispatch('GET_LANG', this.lang);
+  }
 
 }
-
-
 </script>
 
 <style>

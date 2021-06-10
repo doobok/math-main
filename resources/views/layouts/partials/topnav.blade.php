@@ -64,6 +64,12 @@
               Online
             </a>
           </div>
+          @if (app()->getLocale() != 'uk')
+              <a href="{{route('setlocale', ['lang' => 'uk'])}}" class="text-white hover:text-gray-300 px-2 py-3 text-sm uppercase font-bold" rel="nofollow">UA</a>
+          @endif
+          @if (app()->getLocale() != 'ru')
+              <a href="{{route('setlocale', ['lang' => 'ru'])}}" class="text-white hover:text-gray-300 px-2 py-3 text-sm uppercase font-bold" rel="nofollow">RU</a>
+          @endif
       </div>
     </div>
 

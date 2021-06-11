@@ -18,14 +18,12 @@
       ></polygon>
     </svg>
   </div>
-  <div class="container mx-auto px-4 lg:pt-24 lg:pb-24">
+  <div class="container mx-auto px-4 pt-16 pb-12 lg:pt-24 lg:pb-24">
     <div class="flex flex-wrap text-center justify-center">
       <div class="w-full lg:w-6/12 px-4">
-        <h2 class="text-4xl font-semibold">Наші репетитори</h2>
+        <h2 class="text-4xl font-semibold">{{__('main.h2-tutors')}}</h2>
         <p class="text-lg leading-relaxed mt-4 mb-4 text-gray-500">
-          Put the potentially record low maximum sea ice extent tihs year
-          down to low ice. According to the National Oceanic and
-          Atmospheric Administration, Ted, Scambos.
+          {{__('main.desc-tutors')}}
         </p>
       </div>
     </div>
@@ -33,9 +31,9 @@
 
       @for ($i=0; $i < 3; $i++)
 
-        <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+        <div class="lg:pt-12 pt-4 w-full md:w-4/12 px-4 text-center">
           <div
-            class="relative flex flex-col min-w-0 break-words bg-green-400 w-full mb-8 shadow-lg rounded-lg"
+            class="relative flex flex-col min-w-0 break-words bg-green-400 w-full shadow-lg mb-2 rounded-lg"
           >
             <div class="px-4 py-5 flex-auto">
               <div

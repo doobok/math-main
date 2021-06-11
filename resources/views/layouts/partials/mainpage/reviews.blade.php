@@ -18,20 +18,20 @@
       ></polygon>
     </svg>
   </div>
-  <div class="container mx-auto px-4 lg:pt-24 lg:pb-24">
+  <div class="container mx-auto px-4 pt-16 pb-12 lg:pt-24 lg:pb-24">
     <div class="flex flex-wrap text-center justify-center">
-      <div class="w-full lg:w-6/12 px-4">
-        <h2 class="text-4xl font-semibold text-white">Відгуки про репетиторський центр</h2>
+      <div class="w-full lg:w-3/4 px-4">
+        <h2 class="text-4xl font-semibold text-white">{{__('main.h2-reviews')}}</h2>
         <p class="text-lg leading-relaxed mt-4 mb-4 text-gray-100">
-          Put the potentially record low maximum sea ice extent tihs year
-          down to low ice. According to the National Oceanic and
-          Atmospheric Administration, Ted, Scambos.
+          {{__('main.desc-reviews')}}
         </p>
       </div>
     </div>
-    <div class="flex flex-wrap mt-4">
+    {{-- <div class="flex flex-wrap mt-4"> --}}
 
-      @for ($i=0; $i < 3; $i++)
+      <reviews-carousel :items="{{$reviews}}"></reviews-carousel>
+
+      {{-- @for ($i=0; $i < 3; $i++)
         <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
           <div
             class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
@@ -61,12 +61,12 @@
             </div>
           </div>
         </div>
-      @endfor
+      @endfor --}}
 
 
 
-    </div>
-    <div class="flex items-center justify-center">
+    {{-- </div> --}}
+    <div class="flex items-center mt-8 justify-center">
       <button
         class="bg-yellow-400 text-white active:bg-gray-700 text-sm font-bold uppercase my-6 py-4 px-8 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
         type="button"

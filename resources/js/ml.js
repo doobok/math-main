@@ -9,13 +9,14 @@ export default new MLCreate({
     new MLanguage('ru').create({
         search: 'Поиск',
         getTutor: 'Выбрать репетитора',
-
+        review: 'Отзыв',
 
     }),
 
     new MLanguage('uk').create({
         search: 'Пошук',
         getTutor: 'Обрати репетитора',
+        review: 'Відгук',
 
     }),
 

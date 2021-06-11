@@ -18,9 +18,8 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], function(){
 
-Route::get('/', function () {
-    return view('pages.index');
-  });
+  Route::get('/', 'App\Http\Controllers\PagesController@index');
+
 });
 
 //Переключение языков

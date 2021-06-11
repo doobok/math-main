@@ -54,9 +54,9 @@ export default {
 
   computed: {
     itemsCount() {
-      if (this.width > 900) {
+      if (this.width > 1100) {
         return 3;
-      } else if (this.width > 550) {
+      } else if (this.width > 650) {
         return 2;
       } else {
         return 1;

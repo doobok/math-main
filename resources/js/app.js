@@ -18,6 +18,7 @@ Vue.component('animate-select', require('./components/AnimateSelector.vue').defa
 Vue.component('city-select', require('./components/CitySelector.vue').default);
 Vue.component('reviews-carousel', require('./components/ReviewsCarousel.vue').default);
 Vue.component('tutors-carousel', require('./components/TutorsCarousel.vue').default);
+Vue.component('prices-cards', require('./components/PricesCards.vue').default);
 
 const app = new Vue({
     el: '#app',

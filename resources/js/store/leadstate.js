@@ -8,6 +8,7 @@ export default {
       cityID: 0,
       citySlug: '',
       cityIndex: 0,
+      cityDiscount: 0,
       name: '',
 
     },
@@ -34,10 +35,12 @@ export default {
       writeLead(state.lead);
     },
     SET_CITY: (state, payload) => {
+      console.log(payload);
       state.lead.cityName = payload.name;
       state.lead.cityID = payload.id;
       state.lead.citySlug = payload.slug;
       state.lead.cityIndex = payload.money_index;
+      state.lead.cityDiscount = payload.discount;
     },
   },
   actions: {

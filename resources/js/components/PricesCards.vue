@@ -39,7 +39,7 @@
         <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
           <div class="w-full text-3xl text-gray-600 font-bold text-center">
             <span v-if="itm.discount && lead.cityDiscount" class="text-xl line-through text-red-400 align-top leading-3">{{itm.multipl * lead.cityIndex}}</span>
-            {{ discountPrice(itm.multipl) }}
+            {{ discountPrice(itm.multipl, itm.discount) }}
             <span class="text-base">грн./{{$ml.get('plesson')}}</span>
           </div>
           <div class="flex items-center justify-center">

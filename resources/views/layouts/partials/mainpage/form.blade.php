@@ -1,5 +1,7 @@
 <section class="pb-20 relative block bg-gray-900 py-24">
 
+  <lead-form></lead-form>
+
   <div class="container mx-auto w-full lg:w-2/5">
     <div class="">
       <div class="w-full flex text-center justify-center flex-col">

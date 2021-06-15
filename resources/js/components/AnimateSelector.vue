@@ -16,7 +16,7 @@
         type="button"
         style="transition: all 0.15s ease 0s;"
         @click="sendPool"
-      >        
+      >
         {{$ml.get('getTutor')}}
       </button>
     </div>
@@ -79,8 +79,8 @@ export default {
       this.theme = this.thems[Math.floor(Math.random() * this.thems.length)];
     },
     sendPool(){
-      console.log(this.selector);
-    }
+      this.$store.dispatch('TUGGLE_FORM', true);
+    },
   },
 
 }

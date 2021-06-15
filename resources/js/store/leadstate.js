@@ -2,7 +2,7 @@ import Axios from 'axios';
 
 export default {
   state: {
-    locale: 'ru',
+    tuggleform: false,
     lead: {
       cityName: '',
       cityID: 0,
@@ -14,16 +14,16 @@ export default {
     },
   },
   getters: {
-    locale: state => {
-      return state.locale;
+    formstatus: state => {
+      return state.tuggleform;
     },
     lead: state => {
       return state.lead;
     },
   },
   mutations: {
-    SET_LANG: (state, payload) => {
-        state.locale = payload;
+    SET_FORM_STATUS: (state, payload) => {
+        state.tuggleform = payload;
     },
     SET_LEAD: (state, payload) => {
       // изменяем только если в памяти браузера чтото нашли
@@ -35,7 +35,6 @@ export default {
       writeLead(state.lead);
     },
     SET_CITY: (state, payload) => {
-      console.log(payload);
       state.lead.cityName = payload.name;
       state.lead.cityID = payload.id;
       state.lead.citySlug = payload.slug;
@@ -44,8 +43,8 @@ export default {
     },
   },
   actions: {
-    GET_LANG : (context, payload) => {
-      context.commit('SET_LANG', payload);
+    TUGGLE_FORM : (context, payload) => {
+      context.commit('SET_FORM_STATUS', payload);
     },
     GET_ST_DATA : (context, payload) => {
       context.commit('SET_LEAD', loadLead());

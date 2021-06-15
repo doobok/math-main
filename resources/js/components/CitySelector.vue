@@ -52,7 +52,6 @@ export default {
   // задаем язык
   created: function(){
     this.$ml.change(this.lang);
-    this.$store.dispatch('GET_LANG', this.lang);
   }
 
 }

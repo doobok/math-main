@@ -73,7 +73,6 @@ import { mapGetters } from "vuex";
 export default {
   data(){
         return{
-          open: true,
           name: '',
           phone: '',
 
@@ -88,21 +87,21 @@ export default {
     computed: {
       ...mapGetters(['formstatus']),
     },
-    mounted() {
-        var im = new Inputmask('+38 '+'(999) 999-9999');
-        im.mask(this.$refs.phone);
-    },
-    validations: {
-      phone: {
-        required,
-        validFormat: val => /^\+38 \(0\d{2}\) \d{3}\-\d{4}$/.test(val),
-      },
-      name: {
-        required,
-        alpha: val => /^[a-яёії\s]+$/i.test(val),
-      },
-
-    },
+    // mounted() {
+    //     var im = new Inputmask('+38 '+'(999) 999-9999');
+    //     im.mask(this.$refs.phone);
+    // },
+    // validations: {
+    //   phone: {
+    //     required,
+    //     validFormat: val => /^\+38 \(0\d{2}\) \d{3}\-\d{4}$/.test(val),
+    //   },
+    //   name: {
+    //     required,
+    //     alpha: val => /^[a-яёії\s]+$/i.test(val),
+    //   },
+    //
+    // },
   }
 
 

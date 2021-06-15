@@ -3,7 +3,7 @@
 @section('head')
 @component('components.meta')
 
-  @slot('title') TM @endslot
+  @slot('title') Tutor-Math @endslot
   @slot('description') Desc
   @endslot
   @slot('image') /main.png @endslot

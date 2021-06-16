@@ -9,6 +9,7 @@ export default {
       citySlug: '',
       cityIndex: 0,
       cityDiscount: 0,
+      marker: '',
       name: '',
 
     },
@@ -41,6 +42,9 @@ export default {
       state.lead.cityIndex = payload.money_index;
       state.lead.cityDiscount = payload.discount;
     },
+    SET_MARKER: (state, payload) => {
+        state.lead.marker = payload;
+    },
   },
   actions: {
     TUGGLE_FORM : (context, payload) => {
@@ -59,6 +63,9 @@ export default {
       .catch(error => {
         return error;
       });
+    },
+    PUSH_MARKER : (context, payload) => {
+      context.commit('SET_MARKER', payload);
     },
   },
 }

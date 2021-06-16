@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\City;
+use App\Models\Subject;
 use App\Models\Price;
 use Illuminate\Support\Facades\App;
 
@@ -32,6 +33,14 @@ class BLController extends Controller
         }
 
       return $city->translate( $request->locale );
+    }
+
+    // Subjects BLOCK
+    //
+    // Get subjects labels
+    public function getSubjectsNames(Request $request)
+    {
+      return Subject::where('active', 1)->select('id', 'h1')->get()->translate( $request->locale );
     }
 
     // Price BLOCK

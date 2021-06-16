@@ -18,8 +18,8 @@
 
   @include('layouts.partials.mainmenu')
 
-  {{-- @include('layouts.partials.mainpage.introduce') --}}
-  @include('layouts.partials.mainpage.vectors')
+  @include('layouts.partials.mainpage.introduce')
+  @include('layouts.partials.mainpage.subjects')
   @include('layouts.partials.mainpage.advantages')
   @include('layouts.partials.mainpage.tutors')
   @include('layouts.partials.mainpage.reviews')

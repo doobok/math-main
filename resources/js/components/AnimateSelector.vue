@@ -7,7 +7,7 @@
         <option value="" disabled selected hidden>{{paper}}</option>
         <option
         class="text-base leading-3"
-        v-for="t in thems" :value="t">{{t}}</option>
+        v-for="t in thems" :value="t.h1">{{t.h1}}</option>
       </select>
     </div>
     <div class="flex-none p-2">
@@ -15,7 +15,7 @@
         class="bg-green-400 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
         type="button"
         style="transition: all 0.15s ease 0s;"
-        @click="sendPool"
+        @click="opnForm"
       >
         {{$ml.get('getTutor')}}
       </button>
@@ -27,10 +27,7 @@
 export default {
   data(){
       return{
-        thems: [
-          'Репетитор з математики',
-          'Репетитор з укрмови',
-        ],
+        thems: [],
         theme: '',
         selector:'',
         paper: '',
@@ -39,9 +36,15 @@ export default {
       }
   },
   mounted(){
-    this.getString()
-    this.printer()
-    this.startCircle()
+    axios
+      .get('/api/v1/get-subjects-names', {params: {locale: this.$ml.current}})
+      .then(response => {
+        this.thems = response.data;
+        this.getString();
+        this.printer();
+        this.startCircle();
+      });
+
 
   },
 
@@ -66,6 +69,7 @@ export default {
       this.paper=''
     },
     selected(){
+      this.theme = this.selector;
       clearInterval(this.timer)
       clearInterval(this.cycle)
     },
@@ -76,10 +80,11 @@ export default {
       },7000)
     },
     getString(){
-      this.theme = this.thems[Math.floor(Math.random() * this.thems.length)];
+      this.theme = this.thems[Math.floor(Math.random() * this.thems.length)].h1;
     },
-    sendPool(){
+    opnForm(){
       this.$store.dispatch('TUGGLE_FORM', true);
+      this.$store.dispatch('PUSH_MARKER', this.theme);
     },
   },
 

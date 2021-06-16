@@ -47,8 +47,9 @@
               class="bg-blue-400 text-white active:bg-gray-700 text-sm font-bold uppercase my-6 py-4 px-8 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
               type="button"
               style="transition: all 0.15s ease 0s;"
+              @click="opnForm(itm)"
             >
-              Забронювати
+            {{$ml.get('priceCardBtn')}}
             </button>
           </div>
         </div>
@@ -82,8 +83,9 @@
               class="bg-green-400 text-white active:bg-gray-700 text-sm font-bold uppercase my-6 py-4 px-8 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
               type="button"
               style="transition: all 0.15s ease 0s;"
+              @click="opnForm(itm)"
             >
-              Забронювати
+            {{$ml.get('priceCardBtn')}}
             </button>
           </div>
         </div>
@@ -138,7 +140,11 @@ export default {
         } else {
           return multiply * this.lead.cityIndex
         }
-     }
+     },
+     opnForm(mrk){
+       this.$store.dispatch('TUGGLE_FORM', true);
+       this.$store.dispatch('PUSH_MARKER', 'Пакет: ' + mrk.name);
+     },
   },
   computed: {
     ...mapGetters(['lead']),

@@ -21,10 +21,10 @@
   <div class="container mx-auto px-4">
     <div class="flex flex-wrap">
       <div class="w-full lg:w-6/12 px-4">
-        <h4 class="text-3xl font-semibold text-gray-700">Tutor-Math <span class="text-xl">- репетиторський освітній центр</span></h4>
-        <h5 class="text-sm mt-0 mt-2 text-gray-600 uppercase font-semibold">
-          Слідкуй за нами в соціальних мережах
-        </h5>
+        <h4 class="text-3xl font-semibold text-gray-700">Tutor-Math <span class="text-xl">- {{__('main.h1-mp')}}</span></h4>
+        <p class="text-sm mt-0 mt-2 text-gray-600 uppercase font-semibold">
+          {{__('site.follow-us')}}
+        </p>
 
         <div class="my-6 flex">
           @if (setting('social.fb'))
@@ -57,7 +57,7 @@
           <div class="w-full lg:w-4/12 px-4 ml-auto">
             <span
               class="block uppercase text-gray-600 text-sm font-semibold mb-2"
-              >Корисні посилання</span
+              >{{__('site.useful-links')}}</span
             >
             <ul class="list-unstyled">
               <li>
@@ -133,13 +133,13 @@
     <div
       class="flex flex-wrap items-center md:justify-between justify-center"
     >
-      <div class="w-full md:w-4/12 px-4 mx-auto text-center">
+      <div class="w-full md:w-5/12 px-4 mx-auto text-center">
         <div class="text-sm text-gray-600 font-semibold py-1">
-          Turor-Math © 2020 - {{date('Y')}} Усі права захищено.
+          Turor-Math © 2020 - {{date('Y')}} {{__('site.all-rights-reserved')}}.
           <a
             href="#"
             class="text-gray-600 hover:text-gray-700"
-            >Публічна оферта</a
+            >{{__('site.policy')}}</a
           >.
         </div>
       </div>

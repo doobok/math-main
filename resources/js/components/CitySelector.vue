@@ -24,17 +24,13 @@ export default {
   props: ['lang'],
   data(){
       return{
-        cityes: [],
+        // cityes: [],
       }
   },
   mounted(){
     this.$store.dispatch('GET_ST_DATA');
-    axios
-      .get('/api/v1/get-cityes', {params: {locale: this.$ml.current}})
-      .then(response => {
-        this.cityes = response.data;
-      });
-      this.getStartCity();
+    this.$store.dispatch('GET_CITYES', this.$ml.current);
+    this.getStartCity();
   },
 
   methods:{
@@ -48,6 +44,7 @@ export default {
   },
   computed: {
     ...mapGetters(['lead']),
+    ...mapGetters(['cityes']),
   },
   // задаем язык
   created: function(){

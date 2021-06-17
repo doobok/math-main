@@ -2,7 +2,7 @@
 
   <lead-form></lead-form>
 
-  <div class="container mx-auto w-full lg:w-2/5">
+  {{-- <div class="container mx-auto w-full lg:w-2/5">
     <div class="">
       <div class="w-full flex text-center justify-center flex-col">
         <div class="text-2xl font-semibold text-white flex flex-row justify-center">
@@ -103,5 +103,6 @@
 
 
   </div>
-  </div>
+</div>
+  </div> --}}
 </section>

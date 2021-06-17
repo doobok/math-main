@@ -40,7 +40,7 @@ class BLController extends Controller
     // Get subjects labels
     public function getSubjectsNames(Request $request)
     {
-      return Subject::where('active', 1)->select('id', 'h1')->get()->translate( $request->locale );
+      return Subject::where('active', 1)->select('id', 'h1', 'name')->get()->translate( $request->locale );
     }
 
     // Price BLOCK
@@ -60,6 +60,11 @@ class BLController extends Controller
           ];
 
       return $data;
+    }
+    // get prices list
+    public function getPricesList(Request $request)
+    {
+      return Price::where('active', 1)->orderBy('group')->orderBy('count')->get()->translate( $request->locale );
     }
 
 }

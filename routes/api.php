@@ -24,5 +24,6 @@ Route::group(['prefix' => 'v1'], function () {
   Route::get('get-citybyid', 'App\Http\Controllers\BLController@getCityById');
   Route::get('get-cityes', 'App\Http\Controllers\BLController@getCityes');
   Route::get('get-prices', 'App\Http\Controllers\BLController@getPrices');
+  Route::get('get-prices-list', 'App\Http\Controllers\BLController@getPricesList');
   Route::get('get-subjects-names', 'App\Http\Controllers\BLController@getSubjectsNames');
 });

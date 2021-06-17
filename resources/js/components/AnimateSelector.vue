@@ -7,7 +7,7 @@
         <option value="" disabled selected hidden>{{paper}}</option>
         <option
         class="text-base leading-3"
-        v-for="t in thems" :value="t.h1">{{t.h1}}</option>
+        v-for="t in subjects" :value="t">{{t.h1}}</option>
       </select>
     </div>
     <div class="flex-none p-2">
@@ -24,10 +24,10 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data(){
       return{
-        thems: [],
         theme: '',
         selector:'',
         paper: '',
@@ -36,16 +36,13 @@ export default {
       }
   },
   mounted(){
-    axios
-      .get('/api/v1/get-subjects-names', {params: {locale: this.$ml.current}})
-      .then(response => {
-        this.thems = response.data;
-        this.getString();
-        this.printer();
-        this.startCircle();
-      });
-
-
+    this.$store.dispatch('GET_SUBJECTS', this.$ml.current).then(response => {
+          this.getString();
+          this.printer();
+          this.startCircle();
+        }, error => {
+            console.error("error")
+        });
   },
 
   methods:{
@@ -55,12 +52,12 @@ export default {
           // запускаємо анімацію
            this.timer = setInterval(()=>{
              // зупиняємо анімацію
-             if (this.paper.length == this.theme.length - 1) {
+             if (this.paper.length == this.theme.h1.length - 1) {
                clearInterval(this.timer)
              }
         i++
-          const x = i%this.theme.length
-          this.paper += this.theme[x]
+          const x = i%this.theme.h1.length
+          this.paper += this.theme.h1[x]
         },200-(Math.random()*50));
 
     },
@@ -80,12 +77,16 @@ export default {
       },7000)
     },
     getString(){
-      this.theme = this.thems[Math.floor(Math.random() * this.thems.length)].h1;
+      this.theme = this.subjects[Math.floor(Math.random() * this.subjects.length)];
     },
     opnForm(){
       this.$store.dispatch('TUGGLE_FORM', true);
-      this.$store.dispatch('PUSH_MARKER', this.theme);
+      this.$store.dispatch('PUSH_MARKER', this.theme.h1);
+      this.$store.dispatch('PUSH_SUBJECT', this.theme.id);
     },
+  },
+  computed: {
+    ...mapGetters(['subjects']),
   },
 
 }

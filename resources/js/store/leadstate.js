@@ -2,15 +2,19 @@ import Axios from 'axios';
 
 export default {
   state: {
+    subjects: [],
+    prices: [],
+    cityes: [],
     tuggleform: false,
     lead: {
       cityName: '',
-      cityID: 0,
+      cityID: '',
       citySlug: '',
       cityIndex: 0,
       cityDiscount: 0,
       marker: '',
-      name: '',
+      subjectID: '',
+      pricePackID: '',
 
     },
   },
@@ -20,6 +24,25 @@ export default {
     },
     lead: state => {
       return state.lead;
+    },
+    subjects: state => {
+      return state.subjects;
+    },
+    prices: state => {
+      return state.prices;
+    },
+    cityes: state => {
+      return state.cityes;
+    },
+    // for wathers
+    subjectID: state => {
+      return state.lead.subjectID;
+    },
+    cityID: state => {
+      return state.lead.cityID;
+    },
+    pricePackID: state => {
+      return state.lead.pricePackID;
     },
   },
   mutations: {
@@ -42,8 +65,23 @@ export default {
       state.lead.cityIndex = payload.money_index;
       state.lead.cityDiscount = payload.discount;
     },
+    SET_SUBJECTS: (state, payload) => {
+      state.subjects = payload;
+    },
+    SET_PRICES: (state, payload) => {
+      state.prices = payload;
+    },
+    SET_CITYES: (state, payload) => {
+      state.cityes = payload;
+    },
     SET_MARKER: (state, payload) => {
         state.lead.marker = payload;
+    },
+    SET_SUBJECT: (state, payload) => {
+      state.lead.subjectID = payload;
+    },
+    SET_PICE: (state, payload) => {
+      state.lead.pricePackID = payload;
     },
   },
   actions: {
@@ -53,7 +91,7 @@ export default {
     GET_ST_DATA : (context, payload) => {
       context.commit('SET_LEAD', loadLead());
     },
-    // получение Promo из БД
+    // получение Города по id
     GET_CITY : (context, payload) => {
       return Axios.get('/api/v1/get-citybyid', {params: {id: payload.id, locale: payload.locale}})
       .then((response) => {
@@ -64,8 +102,46 @@ export default {
         return error;
       });
     },
+    // получение Предметов
+    GET_SUBJECTS : (context, payload) => {
+      return Axios.get('/api/v1/get-subjects-names', {params: {locale: payload}})
+      .then((response) => {
+        context.commit('SET_SUBJECTS', response.data);
+      })
+      .catch(error => {
+        return error;
+      });
+    },
+    // получение Предметов
+    GET_PRICES : (context, payload) => {
+      return Axios.get('/api/v1/get-prices-list', {params: {locale: payload}})
+      .then((response) => {
+        context.commit('SET_PRICES', response.data);
+      })
+      .catch(error => {
+        return error;
+      });
+    },
+    // получение Городов
+    GET_CITYES : (context, payload) => {
+      return Axios.get('/api/v1/get-cityes', {params: {locale: payload}})
+      .then((response) => {
+        context.commit('SET_CITYES', response.data);
+      })
+      .catch(error => {
+        return error;
+      });
+    },
     PUSH_MARKER : (context, payload) => {
       context.commit('SET_MARKER', payload);
+    },
+    PUSH_SUBJECT : (context, payload) => {
+      context.commit('SET_SUBJECT', payload);
+      context.commit('SAVE_STATE');
+    },
+    PUSH_PICE : (context, payload) => {
+      context.commit('SET_PICE', payload);
+      context.commit('SAVE_STATE');
     },
   },
 }

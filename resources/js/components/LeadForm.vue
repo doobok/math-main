@@ -2,7 +2,7 @@
   <transition name="modal">
     <div v-show="formstatus" class="modal-mask">
       <div class="modal-wrapper">
-        <div class="modal-container text-gray-800">
+        <div class="modal-container text-gray-800 h-full lg:h-auto">
 
           <div class="relative">
             <button @click="close" class="text-white absolute top-0 right-0">
@@ -104,6 +104,29 @@
               </select>
             </div>
 
+            <div class="m-3">
+              <label class="text-white text-sm">
+                <input v-model="promoShow" class="focus:outline-none focus:ring mr-1" type="checkbox"> {{$ml.get('getPromo')}}
+              </label>
+            </div>
+
+            <div v-if="promoShow" class="p-2 flex w-full">
+              <input
+                type="text"
+                v-model="promo"
+                class="border-0 px-3 my-2 placeholder-gray-400 text-gray-700 bg-yellow-100 rounded text-xl shadow focus:outline-none focus:ring flex-grow text-center"
+                :placeholder="$ml.get('promo')"
+                @input="updateText($event.target.value)"
+              />
+              <button
+                class="bg-yellow-400 text-gray-700 p-3 m-3 text-sm font-bold uppercase rounded shadow hover:shadow-lg outline-none focus:outline-none flex-none"
+                type="button"
+                @click="checkPromo"
+              >
+              {{$ml.get('set')}}
+            </button>
+            </div>
+
             <div v-if="total" class="w-full p-2 text-white text-sm">
               {{$ml.get('totalsumm')}} <span class="text-base font-bold text-green-400">{{new Intl.NumberFormat('ru-RU').format(total - discount)}} грн.</span>
               <span v-if="discount"> {{$ml.get('discountsumm')}} <span class="text-base font-bold text-red-400">{{new Intl.NumberFormat('ru-RU').format(discount)}} грн.</span></span>
@@ -150,6 +173,8 @@ export default {
           pricePack: '',
           city: '',
           fullForm: false,
+          promo: '',
+          promoShow: false,
           priceGroup: {
             1: 'indiv',
             2: 'group',
@@ -171,6 +196,12 @@ export default {
       setSubject() {
         this.$store.dispatch('PUSH_SUBJECT', this.subject);
       },
+      updateText(newValue) {
+        this.promo = newValue.toUpperCase();
+      },
+      checkPromo() {
+        console.log(this.promo);
+      }
     },
     computed: {
       ...mapGetters(['formstatus']),
@@ -260,10 +291,12 @@ export default {
   vertical-align: middle;
 }
 .modal-container {
+  overflow-y: auto;
+  overflow-x: hidden;
   width: 98%;
-  max-width: 700px;
+  max-width: 650px;
   margin: 0px auto;
-  padding: 20px 30px;
+  padding: 20px 10px;
   transition: all 0.3s ease;
 }
 .modal-body {

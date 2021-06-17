@@ -33,6 +33,9 @@ export default new MLCreate({
         online: 'онлайн',
         totalsumm: 'общая стоимость',
         discountsumm: 'экономия',
+        getPromo: 'у меня есть промокод',
+        promo: 'Промокод',
+        set: 'Применить',
     }),
 
     new MLanguage('uk').create({
@@ -62,6 +65,9 @@ export default new MLCreate({
         online: 'онлайн',
         totalsumm: 'загальна вартість',
         discountsumm: 'економія',
+        getPromo: 'в мене є промокод',
+        promo: 'Промокод',
+        set: 'Застосувати',
     }),
 
   ]

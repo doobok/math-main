@@ -144,7 +144,6 @@ export default {
      opnForm(mrk){
        this.$store.dispatch('TUGGLE_FORM', true);
        this.$store.dispatch('PUSH_MARKER', 'Пакет: ' + mrk.name);
-       this.$store.dispatch('PUSH_STATE', mrk.id);
      },
   },
   computed: {

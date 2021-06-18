@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\City;
 use App\Models\Subject;
 use App\Models\Price;
+use App\Models\Promo;
 use Illuminate\Support\Facades\App;
+use Carbon\Carbon;
 
 class BLController extends Controller
 {
@@ -67,4 +69,55 @@ class BLController extends Controller
       return Price::where('active', 1)->orderBy('group')->orderBy('count')->get()->translate( $request->locale );
     }
 
+    // PROMO codes
+    //
+    // Check promo
+    public function checkPromo(Request $request)
+    {
+      $promo = Promo::where('code', $request->promo)->where('active', 1)->first();
+
+      $valid = 'no';
+      $type = '';
+      $value = 0;
+      // якщо промокод знайдено
+      if ($promo) {
+        // перевіряємо наявність лімітів
+        if ($promo->limit_count > 0 ||  $promo->limit_date) {
+          // перевіряємо ліміт кількості
+          if ($promo->limit_count > 0) {
+            // якщо ліміт активний перевіряємо остачу
+            if ($promo->limit_count > $promo->count) {
+              $valid= 'yes';
+            }
+          }
+          // перевіряємо ліміт дати
+          if ($promo->limit_date) {
+            if ($promo->limit_date > Carbon::today()->toDateString()) {
+              $valid= 'yes';
+            }
+          }
+        } else {
+          $valid= 'yes';
+        }
+        // якщо перевірки успішні працюємо із дисконтом
+        if ($valid === 'yes') {
+          // якщо знижка < 100 знижка вважаэться відсотковою
+          if ($promo->discount < 100) {
+            $type = 'percent';
+          } else {
+            $type = 'cash';
+          }
+          // задаємо значення
+          $value = $promo->discount;
+        }
+      }
+      // збираємо масив
+      $data = [
+        'valid' => $valid,
+        'type' => $type,
+        'value' => $value,
+          ];
+
+      return $data;
+    }
 }

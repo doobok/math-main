@@ -36,6 +36,11 @@ export default new MLCreate({
         getPromo: 'у меня есть промокод',
         promo: 'Промокод',
         set: 'Применить',
+        validno: 'Промокод недействителен',
+        validyes: 'Поздравляем! Промокод успешно применен',
+        send: 'Отправить',
+        checkField: 'ошибка ввода',
+        fillForm: 'Заполните форму',
     }),
 
     new MLanguage('uk').create({
@@ -68,6 +73,11 @@ export default new MLCreate({
         getPromo: 'в мене є промокод',
         promo: 'Промокод',
         set: 'Застосувати',
+        validno: 'Промокод недійсний',
+        validyes: 'Вітаємо! Промокод успішно застосований',
+        send: 'Відправити',
+        checkField: 'помилка вводу',
+        fillForm: 'Заповніть форму',
     }),
 
   ]

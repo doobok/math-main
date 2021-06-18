@@ -37,17 +37,19 @@
               />
             </div>
 
-            <div id="firstname" class="w-full p-2" v-bind:class="{ 'sm:w-1/2': fullForm }">
+            <div id="firstname" class="w-full p-2 relative" v-bind:class="{ 'sm:w-1/2': fullForm }">
               <span class="text-xs text-gray-400">{{$ml.get('firstname')}}</span>
               <input
                 type="text" name="firstname"
                 v-model="firstname"
                 class="border-0 p-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                 :placeholder="$ml.get('firstname')"
+                @blur="$v.firstname.$touch()"
               />
+              <span v-if="$v.firstname.$error" class="text-xs text-red-400 absolute -bottom-2 left-3">{{$ml.get('checkField')}}</span>
             </div>
             <!-- phone -->
-            <div id="phone" class="w-full p-2">
+            <div id="phone" class="w-full p-2 relative">
               <span class="text-xs text-gray-400">{{$ml.get('phone')}}</span>
               <input
                 type="text"
@@ -55,7 +57,9 @@
                 ref="phone"
                 class="border-0 p-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                 :placeholder="$ml.get('phone')"
+                @blur="$v.phone.$touch()"
               />
+              <span v-if="$v.phone.$error" class="text-xs text-red-400 absolute -bottom-2 left-3">{{$ml.get('checkField')}}</span>
             </div>
 
           <template id="fullform" v-if="fullForm">
@@ -73,7 +77,7 @@
             <!-- class -->
             <div class="w-full sm:w-1/2 p-2">
               <span class="text-xs text-gray-400">{{$ml.get('class')}}</span>
-              <select v-model="klas"
+              <select v-model="klass"
               class="border-0 p-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full">
                 <option value="" disabled selected hidden>{{$ml.get('class')}}</option>
                 <option
@@ -100,7 +104,9 @@
                 <option value="" disabled selected hidden>{{$ml.get('servicePack')}}</option>
                 <option
                 class="text-base leading-3"
-                v-for="pack in prices" :value="pack.id">{{pack.name}} {{pack.count}} ({{$ml.get(priceGroup[pack.group])}})</option>
+                v-for="pack in prices" :value="pack.id">
+                  {{pack.name}} {{pack.count}} ({{$ml.get(priceGroup[pack.group])}})
+                </option>
               </select>
             </div>
 
@@ -110,7 +116,12 @@
               </label>
             </div>
 
-            <div v-if="promoShow" class="p-2 flex w-full">
+            <div v-if="promoDdiscount.valid" class="w-full text-sm text-center text-yellow-200 mb-1">
+              -- {{$ml.get('valid' + promoDdiscount.valid)}} --
+            </div>
+
+            <div v-if="promoShow && promoDdiscount.valid != 'yes'" class="p-2 flex w-full">
+
               <input
                 type="text"
                 v-model="promo"
@@ -127,9 +138,11 @@
             </button>
             </div>
 
-            <div v-if="total" class="w-full p-2 text-white text-sm">
-              {{$ml.get('totalsumm')}} <span class="text-base font-bold text-green-400">{{new Intl.NumberFormat('ru-RU').format(total - discount)}} грн.</span>
-              <span v-if="discount"> {{$ml.get('discountsumm')}} <span class="text-base font-bold text-red-400">{{new Intl.NumberFormat('ru-RU').format(discount)}} грн.</span></span>
+            <div v-if="total" class="w-full m-2 text-white text-center text-sm">
+              <span class="p-3 border-gray-400 border-2 border-dotted rounded">
+                {{$ml.get('totalsumm')}} <span class="text-base font-bold text-green-400">{{new Intl.NumberFormat('ru-RU').format(total - discount)}} грн.</span>
+                <span v-if="discount"> {{$ml.get('discountsumm')}} <span class="text-base font-bold text-red-400">{{new Intl.NumberFormat('ru-RU').format(discount)}} грн.</span></span>
+              </span>
             </div>
 
           </template>
@@ -143,8 +156,15 @@
             <button
               class="bg-green-400 text-gray-700 w-full p-3 m-3 text-sm font-bold uppercase rounded shadow hover:shadow-lg outline-none focus:outline-none"
               type="button"
+              :disabled="$v.$invalid"
+              @click="sendForm"
             >
-            Відправити
+            <template v-if="$v.$invalid">
+              {{$ml.get('fillForm')}}
+            </template>
+            <template v-else>
+              {{$ml.get('send')}}
+            </template>
           </button>
 
         </div>
@@ -168,13 +188,18 @@ export default {
           firstname: '',
           lastname: '',
           phone: '',
-          klas: '',
+          klass: '',
           subject: '',
           pricePack: '',
           city: '',
           fullForm: false,
           promo: '',
           promoShow: false,
+          promoDdiscount: {
+            valid: false,
+            type: '',
+            value: '',
+          },
           priceGroup: {
             1: 'indiv',
             2: 'group',
@@ -184,6 +209,9 @@ export default {
         }
     },
     methods: {
+      sendForm() {
+        console.log(this.collectedLead);
+      },
       close(){
         this.$store.dispatch('TUGGLE_FORM', false);
       },
@@ -200,7 +228,11 @@ export default {
         this.promo = newValue.toUpperCase();
       },
       checkPromo() {
-        console.log(this.promo);
+        axios
+          .get('/api/v1/check-promo', {params: {promo: this.promo}})
+          .then(response => {
+            this.promoDdiscount = response.data;
+          });
       }
     },
     computed: {
@@ -212,6 +244,22 @@ export default {
       ...mapGetters(['subjectID']),
       ...mapGetters(['cityID']),
       ...mapGetters(['pricePackID']),
+
+      collectedLead() {
+        return {
+          firstname: this.firstname,
+          lastname: this.lastname,
+          phone: this.phoneNum,
+          cityId: this.city,
+          subjectId: this.subject,
+          klass: this.klass,
+          priceId: this.pricePack,
+          cost: this.total,
+          discount: this.discount,
+          promo: this.promo,
+          fullForm: this.fullForm,
+        };
+      },
       total() {
         if (this.pricePack) {
           let price = this.prices.find(p => {
@@ -225,6 +273,7 @@ export default {
       },
       discount() {
         if (this.total) {
+          // рахуємо знижку з сайта
           let price = this.prices.find(p => {
             return p.id === this.pricePack
           })
@@ -234,9 +283,25 @@ export default {
           } else {
             discount = 0
           }
+          // рахуємо знижку по промокоду
+          if (this.promoDdiscount.valid === 'yes') {
+            let pcd
+            if (this.promoDdiscount.type === 'percent') {
+              pcd = (this.total / 100) * this.promoDdiscount.value
+            } else {
+              pcd = this.promoDdiscount.value
+            }
+            discount = discount + pcd
+          }
           return discount
         }
-      }
+      },
+      phoneNum: function() {
+                var str = this.phone;
+                str = str.replace(/[^0-9.]/g, '');
+                str = str.substr(2);
+                return str;
+      },
 
     },
     mounted() {

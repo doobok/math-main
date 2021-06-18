@@ -26,4 +26,5 @@ Route::group(['prefix' => 'v1'], function () {
   Route::get('get-prices', 'App\Http\Controllers\BLController@getPrices');
   Route::get('get-prices-list', 'App\Http\Controllers\BLController@getPricesList');
   Route::get('get-subjects-names', 'App\Http\Controllers\BLController@getSubjectsNames');
+  Route::get('check-promo', 'App\Http\Controllers\BLController@checkPromo');
 });

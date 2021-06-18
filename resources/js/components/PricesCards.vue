@@ -22,7 +22,9 @@
       <div v-if="!itm.fav" class="flex flex-col bg-white lg:w-1/4 w-5/6 mx-auto lg:mx-0 rounded-lg lg:rounded-l-lg mt-4 shadow hover:shadow-lg">
         <div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
           <div class="p-8 text-3xl font-bold text-center border-b-4 flex flex-wrap justify-center">
-            <span v-html="itm.svg"></span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 mr-2" viewBox="0 0 24 24" fill="currentColor"
+              v-html="itm.svg">
+            </svg>
             <span>{{itm.name}}</span>
           </div>
           <ul class="w-full text-center text-sm">
@@ -58,7 +60,9 @@
       <div v-else class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-lg bg-white mt-4 sm:-mt-6 bg-green-100 shadow hover:shadow-lg z-10">
         <div class="flex-1 rounded-t rounded-b-none overflow-hidden">
           <div class="w-full p-8 text-3xl font-bold text-center border-b-4 border-green-300 flex flex-wrap justify-center">
-            <span v-html="itm.svg"></span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 mr-2" viewBox="0 0 24 24" fill="currentColor"
+              v-html="itm.svg">
+            </svg>
             <span>{{itm.name}}</span>
           </div>
           <ul class="w-full text-center text-base">

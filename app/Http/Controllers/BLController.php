@@ -7,6 +7,7 @@ use App\Models\City;
 use App\Models\Subject;
 use App\Models\Price;
 use App\Models\Promo;
+use App\Models\Lead;
 use Illuminate\Support\Facades\App;
 use Carbon\Carbon;
 
@@ -69,7 +70,7 @@ class BLController extends Controller
       return Price::where('active', 1)->orderBy('group')->orderBy('count')->get()->translate( $request->locale );
     }
 
-    // PROMO codes
+    // PROMO code
     //
     // Check promo
     public function checkPromo(Request $request)
@@ -119,5 +120,18 @@ class BLController extends Controller
           ];
 
       return $data;
+    }
+
+    // LEAD code
+    //
+    // SEnd Lead
+    public function sendLead(Request $request)
+    {
+       $lead = Lead::create($request->all());
+
+       $lead->total = $lead->cost - $lead->discount;
+       $lead->save();
+
+       return response()->json(['success' => true]);
     }
 }

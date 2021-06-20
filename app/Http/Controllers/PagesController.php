@@ -22,4 +22,13 @@ class PagesController extends Controller
             'subjects' => $subjects,
           ]);
     }
+
+    public function page()
+    {
+      return view('pages.subject', [
+      //   'reviews' => $reviews,
+      //   'tutors' => $tutors,
+      //   'subjects' => $subjects,
+      ]);
+    }
 }

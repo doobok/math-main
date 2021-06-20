@@ -122,6 +122,10 @@
               -- {{$ml.get('valid' + promoDdiscount.valid)}} --
             </div>
 
+            <div v-if="promoDdiscount.valid === 'yes' && !total" class="w-full text-sm text-center text-red-400 mb-1">
+              -- {{$ml.get('selectPrice')}} --
+            </div>
+
             <div v-if="promoShow && promoDdiscount.valid != 'yes'" class="p-2 flex w-full">
 
               <input

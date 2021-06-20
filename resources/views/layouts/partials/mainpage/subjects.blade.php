@@ -46,13 +46,13 @@
             <p class="mt-2 mb-4 text-gray-600">
               {{$subject->promodesc}}
             </p>
+            {{-- tags --}}
             <div class="flex flex-wrap justify-center p-4 space-x-1">
-              <a href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор з математики</a>
-              <a href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор з англійської мови</a>
-              <a href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор з фізики</a>
-              <a href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор онлайн</a>
-
+              @foreach ($subject->tags->where('active', 1) as $tag)
+                <a href="{{route('page', $tag->url)}}" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1" title="{{$tag->title}}">{{$tag->name}}</a>
+              @endforeach
             </div>
+            {{-- tags end --}}
           </div>
         </div>
       </div>

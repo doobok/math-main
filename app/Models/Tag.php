@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use TCG\Voyager\Traits\Translatable;
 
-class Subject extends Model
+class Tag extends Model
 {
     use HasFactory;
     use Translatable;
 
-    protected $translatable = ['title', 'description', 'h1', 'name', 'promodesc', 'text'];
+    protected $translatable = ['title', 'name'];
 
-    public function tags()
+    public function subjects()
     {
-        return $this->morphToMany(Tag::class, 'tagable');
+        return $this->morphedByMany(Subject::class, 'tagable');
     }
 }

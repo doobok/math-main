@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+Route::get('get-tag-state', 'App\Http\Controllers\Admin\TagsController@getTagsState');
+Route::post('set-tag', 'App\Http\Controllers\Admin\TagsController@setTag');
+
+
 // V1 API
 Route::group(['prefix' => 'v1'], function () {
   Route::get('get-city', 'App\Http\Controllers\BLController@getCity');

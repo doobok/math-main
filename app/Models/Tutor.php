@@ -13,4 +13,9 @@ class Tutor extends Model
 
     protected $translatable = ['name', 'text'];
 
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'tagable');
+    }
+
 }

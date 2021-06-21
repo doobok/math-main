@@ -25,8 +25,8 @@ class TagsController extends Controller
            $item->model = $model->tagable_type;
            $items_colection->push($item);
          }
+         $models_colection->push($items_colection);
       }
-      $models_colection->push($items_colection);
 
       $data = [
         'models' => $models_colection,

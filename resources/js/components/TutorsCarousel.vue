@@ -25,10 +25,12 @@
             </div>
           </div>
           <div class="flex flex-wrap justify-center p-4 space-x-1">
-            <a href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор з математики</a>
-            <a href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор з англійської мови</a>
+            <a v-for="t in item.tgs" href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">{{t.name}}</a>
+
+
+            <!-- <a href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор з англійської мови</a>
             <a href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор з фізики</a>
-            <a href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор онлайн</a>
+            <a href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор онлайн</a> -->
 
           </div>
           <div class="p-4 flex justify-center">
@@ -95,6 +97,7 @@ export default {
     window.addEventListener('resize', this.updateWidth);
   },
   mounted() {
+    console.log(this.items);
     this.width = window.innerWidth;
   }
 }

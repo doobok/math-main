@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <div class="form-group">
       <label>Виберіть тег щоб додати</label>
       <select class="form-control"
@@ -10,13 +11,14 @@
       </select>
     </div>
 
-    <button v-for="t in tags" type="button" class="btn btn-sm btn-primary"
+    <span v-for="t in tags" class="label label-info"
       style="font-size: x-small;"
-      v-bind:class="{  'btn-danger' : !t.active }"
+      v-bind:class="{  'label-danger' : !t.active }"
+      @click="remTag(t.id)"
       >
       {{t.name}}
       <i class="voyager-x"></i>
-    </button>
+    </span>
 
   </div>
 
@@ -35,9 +37,19 @@ export default {
       axios
         .post('/api/set-tag', {'id': this.selected.id, 'model_id': this.item.id, 'model_type': this.item.model}).then(response => {
           if (response.data.success === true) {
-            // this.sended = true;
             this.tags.push(this.selected);
-            console.log('ok');
+          }
+        }).catch(err => {
+          let e = { ...err    }
+          alert('Error! - ' + e.response.data.message)
+        });
+    },
+    remTag(id) {
+      axios
+        .post('/api/rem-tag', {'id': id, 'model_id': this.item.id, 'model_type': this.item.model}).then(response => {
+          if (response.data.success === true) {
+            let index = this.tags.findIndex(tag => tag.id === id);
+            this.tags.splice(index, 1);
           }
         }).catch(err => {
           let e = { ...err    }

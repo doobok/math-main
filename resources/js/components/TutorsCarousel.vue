@@ -25,13 +25,7 @@
             </div>
           </div>
           <div class="flex flex-wrap justify-center p-4 space-x-1">
-            <a v-for="t in item.tgs" href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">{{t.name}}</a>
-
-
-            <!-- <a href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор з англійської мови</a>
-            <a href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор з фізики</a>
-            <a href="#" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1">репетитор онлайн</a> -->
-
+            <a v-for="t in item.tgs" :href="getUll(t.url)" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1" :title="t.title">{{t.name}}</a>
           </div>
           <div class="p-4 flex justify-center">
             <button
@@ -92,6 +86,13 @@ export default {
        this.$store.dispatch('TUGGLE_FORM', true);
        this.$store.dispatch('PUSH_MARKER', mrk);
      },
+     getUll(u) {
+       if (this.$ml.current === 'uk') {
+         return '/uk/' + u
+       } else {
+         return '/' + u
+       }
+     }
   },
   created() {
     window.addEventListener('resize', this.updateWidth);

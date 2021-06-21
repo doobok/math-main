@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('get-tag-state', 'App\Http\Controllers\Admin\TagsController@getTagsState');
 Route::post('set-tag', 'App\Http\Controllers\Admin\TagsController@setTag');
+Route::post('rem-tag', 'App\Http\Controllers\Admin\TagsController@remTag');
 
 
 // V1 API

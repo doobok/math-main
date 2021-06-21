@@ -47,6 +47,17 @@ class TagsController extends Controller
 
         return response()->json(['success' => true]);
 
-      // code...
+    }
+
+    public function remTag(Request $request)
+    {
+      $item = $request->model_type::find($request->model_id);
+      // attach
+      $item->tags()->detach([
+           $request->id,
+        ]);
+
+        return response()->json(['success' => true]);
+
     }
 }

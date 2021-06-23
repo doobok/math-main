@@ -53,9 +53,3 @@ export default {
 
 }
 </script>
-
-<style>
-.group:hover .group-hover\:block {
-  display: block !important;
-  }
-</style>

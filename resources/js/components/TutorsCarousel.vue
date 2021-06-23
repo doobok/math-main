@@ -98,7 +98,6 @@ export default {
     window.addEventListener('resize', this.updateWidth);
   },
   mounted() {
-    console.log(this.items);
     this.width = window.innerWidth;
   }
 }

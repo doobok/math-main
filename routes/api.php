@@ -33,4 +33,5 @@ Route::group(['prefix' => 'v1'], function () {
   Route::get('get-subjects-names', 'App\Http\Controllers\BLController@getSubjectsNames');
   Route::get('check-promo', 'App\Http\Controllers\BLController@checkPromo');
   Route::post('send-lead', 'App\Http\Controllers\BLController@sendLead');
+  Route::get('get-menu', 'App\Http\Controllers\BLController@getMenu');
 });

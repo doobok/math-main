@@ -36,19 +36,6 @@
 
     </div>
 
-    <!-- <div v-for="mod in models" class="d-flex flex-wrap col-md-12">
-      <h4>Модель {{mod[0].model}}</h4>
-
-      <div v-for="mo in mod" class="card col-md-3"  style="margin: 10px;">
-          <div class="card-body">
-            <h4>{{mo.name}}</h4>
-
-            <tag-asistant-elm :tags="mo.tags" :taglist="tags" :item="mo"></tag-asistant-elm>
-
-          </div>
-      </div>
-
-    </div> -->
 
   </div>
 
@@ -69,15 +56,6 @@ export default {
         this.models = response.data.models;
         this.tags = response.data.tags;
       });
-
   },
-
-  methods:{
-    show(mod) {
-      console.log(mod);
-    }
-
-  },
-
 }
 </script>

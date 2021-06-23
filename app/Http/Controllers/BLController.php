@@ -135,17 +135,10 @@ class BLController extends Controller
        return response()->json(['success' => true]);
     }
 
-    // public function getTag()
-    // {
-    //   $subj = Subject::find(3);
-    //   $tags = $subj->tags->where('active', 1);
-    //
-    //   // // attach
-    //   // $subj->tags()->attach([
-    //   //      1,
-    //   //      2,
-    //   //   ]);
-    //
-    //   return $tags;
-    // }
+    public function getMenu(Request $request)
+    {
+      return menu('main_menu', '_json')->translate( $request->locale );
+    }
+
+
 }

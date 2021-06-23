@@ -15,7 +15,7 @@
     </button>
   </div>
 
-  <div class="flex flex-col sm:flex-row justify-center pt-12 my-12 sm:my-4">
+  <div class="flex flex-col sm:flex-row justify-center md:pt-12 my-12 sm:my-4">
 
     <template v-for="itm in itemsCards">
 

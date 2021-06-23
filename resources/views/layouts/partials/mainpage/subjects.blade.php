@@ -18,7 +18,7 @@
       ></polygon>
     </svg>
   </div>
-  <div class="container mx-auto px-4 lg:pt-24 lg:pb-24">
+  <div class="container mx-auto px-4 pt-16 lg:pt-24 lg:pb-24">
 
     <div class="flex flex-wrap text-center justify-center">
       <div class="w-full lg:w-6/12 px-4">
@@ -32,9 +32,9 @@
     <div class="flex flex-wrap justify-center">
 
     @foreach ($subjects as $subject)
-      <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+      <div class="lg:pt-8 pt-6 w-full md:w-4/12 px-4 text-center">
         <div
-          class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
+          class="relative flex flex-col min-w-0 break-words bg-white w-full mb-1 lg:mb-8 shadow-lg rounded-lg"
         >
           <div class="px-4 py-5 flex-auto">
             <div class="text-gray-600 flex justify-center p-3 mb-5">

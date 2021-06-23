@@ -18,7 +18,7 @@
       ></polygon>
     </svg>
   </div>
-  <div class="container mx-auto px-4 lg:pt-24 lg:pb-24">
+  <div class="container mx-auto px-4 pt-16 md:pb-12 lg:pt-24 lg:pb-24">
 
     <div class="flex flex-wrap text-center justify-center">
       <div class="w-full lg:w-6/12 px-4">

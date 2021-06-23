@@ -18,7 +18,7 @@
       ></polygon>
     </svg>
   </div>
-  <div class="container mx-auto px-4 pt-16 pb-12 lg:pt-24 lg:pb-24">
+  <div class="container mx-auto px-0 md:px-4 pt-16 md:pb-12 lg:pt-24 lg:pb-24">
     <div class="flex flex-wrap text-center justify-center">
       <div class="w-full lg:w-6/12 px-4">
         <h2 class="text-4xl font-semibold">{{__('main.h2-tutors')}}</h2>

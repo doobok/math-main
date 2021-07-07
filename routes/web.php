@@ -18,7 +18,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], function(){
 
-  Route::get('/', 'App\Http\Controllers\PagesController@index');
+  Route::get('/', 'App\Http\Controllers\PagesController@index')->name('mainpage');
   Route::get('/{slug}', 'App\Http\Controllers\PagesController@page')->name('page');
 
 });

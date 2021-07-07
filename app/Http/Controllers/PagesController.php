@@ -30,10 +30,10 @@ class PagesController extends Controller
           ]);
     }
 
-    public function page()
+    public function page($slug)
     {
-      return view('pages.subject', [
-      //   'reviews' => $reviews,
+      return view('pages.page', [
+        'slug' => $slug,
       //   'tutors' => $tutors,
       //   'subjects' => $subjects,
       ]);

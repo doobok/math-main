@@ -1,6 +1,6 @@
-<div class="hidden lg:block">
+<div class="hidden lg:block my-5 sticky top-2 z-50">
 
-<ul class="flex flex-wrap justify-center my-5 sticky top-2 z-50">
+<ul class="flex flex-wrap justify-center">
 
   @foreach (menu('main_menu', '_json')->translate( App::currentLocale() ) as $menuitem)
     <li class="relative group">

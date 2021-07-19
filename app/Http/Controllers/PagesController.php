@@ -32,6 +32,15 @@ class PagesController extends Controller
 
     public function page($slug)
     {
+      // check Subject
+      $subject = Subject::where('slug', $slug)->first();
+      if ($subject != null) {
+        return view('pages.subject-page', [
+          'page' => $subject,
+        ]);
+      }
+
+
       return view('pages.page', [
         'slug' => $slug,
       //   'tutors' => $tutors,

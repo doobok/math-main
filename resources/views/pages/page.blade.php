@@ -4,8 +4,7 @@
 @component('components.meta')
 
   @slot('title') Tutor-Math @endslot
-  @slot('description') Desc
-  @endslot
+  @slot('description') Desc  @endslot
   @slot('image') /main.png @endslot
   @slot('date') {{config('app.startdate')}} @endslot
 

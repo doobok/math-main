@@ -63,6 +63,12 @@
         </div>
       @endfor --}}
 
+      <div class="text-sm pt-4 text-white text-center">
+        <a href="{{route('page', 'reviews')}}">
+          {{__('site.all-reviews')}}
+        </a>
+      </div>
+
 
 
     {{-- </div> --}}

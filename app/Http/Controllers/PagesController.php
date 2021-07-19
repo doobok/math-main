@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\Tutor;
 use App\Models\Subject;
+use App\Models\City;
 use Illuminate\Support\Facades\App;
 
 class PagesController extends Controller
@@ -32,19 +33,34 @@ class PagesController extends Controller
 
     public function page($slug)
     {
-      // check Subject
-      $subject = Subject::where('slug', $slug)->first();
-      if ($subject != null) {
-        return view('pages.subject-page', [
-          'page' => $subject,
-        ]);
+      switch ($slug) {
+        // check contacts
+        case 'contacts':
+          return view('pages.contacts-page', ['cityes' => City::where('active', 1)->get()]);
+        break;
+        // check reviews
+        case 'reviews':
+          return view('pages.reviews-page', ['reviews' => Review::where('active', 1)->orderBy('order')->get()]);
+        break;
+
+        default:
+          // check Subject
+          $subject = Subject::where('slug', $slug)->first();
+          if ($subject != null) {
+            return view('pages.subject-page', [
+              'page' => $subject,
+            ]);
+          };
+
+
+          return view('pages.page', [
+            'slug' => $slug,
+          //   'tutors' => $tutors,
+          //   'subjects' => $subjects,
+          ]);
+          break;
       }
 
 
-      return view('pages.page', [
-        'slug' => $slug,
-      //   'tutors' => $tutors,
-      //   'subjects' => $subjects,
-      ]);
     }
 }

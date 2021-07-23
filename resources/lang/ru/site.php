@@ -11,5 +11,6 @@ return [
     'reviews' => 'Отзывы',
     'review' => 'Отзыв',
     'all-reviews' => 'Посмотреть все отзывы',
+    'about-us' => 'О нас',
 
 ];

@@ -62,12 +62,12 @@
             <ul class="list-unstyled">
               <li>
                 <a
-                  class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                  href="https://www.creative-tim.com/presentation"
-                  >About Us</a
+                  class="text-gray-700 hover:text-gray-500 font-semibold block pb-2 text-sm"
+                  href="{{route('page', 'about-us')}}"
+                  >{{__('site.about-us')}}</a
                 >
               </li>
-              <li>
+              {{-- <li>
                 <a
                   class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
                   href="https://blog.creative-tim.com"
@@ -87,7 +87,7 @@
                   href="https://www.creative-tim.com/bootstrap-themes/free"
                   >Free Products</a
                 >
-              </li>
+              </li> --}}
             </ul>
           </div>
           <div class="w-full lg:w-4/12 px-4">
@@ -98,7 +98,7 @@
             <ul class="list-unstyled">
               <li>
                 <a
-                  class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
+                  class="text-gray-700 hover:text-gray-500 font-semibold block pb-2 text-sm"
                   href="https://github.com/creativetimofficial/argon-design-system/blob/master/LICENSE.md"
                   >MIT License</a
                 >
@@ -137,8 +137,8 @@
         <div class="text-sm text-gray-600 font-semibold py-1">
           Turor-Math © 2020 - {{date('Y')}} {{__('site.all-rights-reserved')}}.
           <a
-            href="#"
-            class="text-gray-600 hover:text-gray-700"
+            href="{{route('page', 'public-offer')}}"
+            class="text-gray-600 hover:text-gray-500"
             >{{__('site.policy')}}</a
           >.
         </div>

@@ -7,6 +7,7 @@ use App\Models\Review;
 use App\Models\Tutor;
 use App\Models\Subject;
 use App\Models\City;
+use App\Models\Page;
 use Illuminate\Support\Facades\App;
 
 class PagesController extends Controller
@@ -42,22 +43,35 @@ class PagesController extends Controller
         case 'reviews':
           return view('pages.reviews-page', ['reviews' => Review::where('active', 1)->orderBy('order')->get()]);
         break;
+        // check online
+        case 'online':
+          return view('pages.online-page', ['page' => Page::where('slug', 'online')->first()]);
+        break;
 
         default:
           // check Subject
           $subject = Subject::where('slug', $slug)->first();
           if ($subject != null) {
+            $tutors = Tutor::where('active', 1)->orderBy('order')->get()->translate( App::currentLocale() );
+
+            $tutors_with_tags = collect();
+            foreach ($tutors as $tutor) {
+              $tut = Tutor::find($tutor->id);
+              $tutor->tgs = $tut->tags->where('active', 1)->translate( App::currentLocale() );
+              $tutors_with_tags->push($tutor);
+            }
             return view('pages.subject-page', [
               'page' => $subject,
+              'tutors' => $tutors_with_tags,
             ]);
           };
 
+          $page = Page::where('slug', $slug)->firstOrFail();
 
-          return view('pages.page', [
-            'slug' => $slug,
-          //   'tutors' => $tutors,
-          //   'subjects' => $subjects,
-          ]);
+            return view('pages.page', [
+              'page' => $page,
+            ]);
+
           break;
       }
 

@@ -72,7 +72,7 @@
 
 
     {{-- </div> --}}
-    <div class="flex items-center mt-8 justify-center">
+    {{-- <div class="flex items-center mt-8 justify-center">
       <button
         class="bg-yellow-400 text-white active:bg-gray-700 text-sm font-bold uppercase my-6 py-4 px-8 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
         type="button"
@@ -80,6 +80,6 @@
       >
         Залишити відгук
       </button>
-    </div>
+    </div> --}}
   </div>
 </section>

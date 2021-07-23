@@ -20,6 +20,7 @@ Vue.component('reviews-carousel', require('./components/ReviewsCarousel.vue').de
 Vue.component('tutors-carousel', require('./components/TutorsCarousel.vue').default);
 Vue.component('prices-cards', require('./components/PricesCards.vue').default);
 Vue.component('lead-form', require('./components/LeadForm.vue').default);
+Vue.component('smpl-button', require('./components/SimpleButton.vue').default);
 
 const app = new Vue({
     el: '#app',

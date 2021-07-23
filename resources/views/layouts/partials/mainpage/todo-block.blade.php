@@ -18,14 +18,30 @@
       ></polygon>
     </svg>
   </div>
-  <div class="container mx-auto px-4 pt-16 md:pb-12 lg:pt-24 lg:pb-24">
-    <div class="flex flex-wrap text-center justify-center">
-      <div class="w-full lg:w-3/4 px-4">
-        <h2 class="text-4xl font-semibold text-white">{{__('main.h2-reviews')}}</h2>
-        <p class="text-lg leading-relaxed mt-4 mb-4 text-gray-100">
-          {{__('main.desc-reviews')}}
+  <div class="container flex flex-wrap mx-auto px-4 pt-16 md:pb-12 lg:pt-24 lg:pb-24">
+    <div class="flex justify-center w-full md:w-2/4 lg:w-4/12 ml-auto mr-auto mb-2 px-4">
+      <img
+        alt="{{__('main.todo-title')}}"
+        class="max-w-full"
+        src="/idea.png"
+      />
+    </div>
+
+
+    <div class="w-full md:w-1/2 text-center justify-center lg:mt-12">
+        <h2 class="text-4xl font-semibold mb-4 text-white">
+          {{__('main.todo-title')}}
+        </h2>
+        <p class="text-2xl font-semibold text-white">
+          {{__('main.todo-subtitle')}}
         </p>
-      </div>
+        <p class="text-lg leading-relaxed mt-8 mb-8 text-gray-100">
+          {{__('main.todo-desc')}}
+        </p>
+
+        <smpl-button clr="red" txt="👉 {{__('main.todo-btn')}}"></smpl-button>
+
+        <p class="text-base leading-relaxed mt-8 mb-4 text-gray-100">{{__('main.todo-aftertext')}}</p>
     </div>
 
 

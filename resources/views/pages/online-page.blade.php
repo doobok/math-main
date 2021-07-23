@@ -127,6 +127,7 @@
     </div>
   </section>
 
+  @include('layouts.partials.mainpage.todo-block')
 
 
 @endsection

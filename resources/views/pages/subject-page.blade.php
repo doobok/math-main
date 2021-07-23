@@ -93,6 +93,7 @@
 
   @include('layouts.partials.mainpage.tutors')
   @include('layouts.partials.mainpage.pricing')
+  @include('layouts.partials.mainpage.todo-block')
 
 
 

@@ -3,9 +3,11 @@
     <h3 class="text-3xl mb-4 font-semibold leading-normal">
       🔰 {{__('main.h2-introduce')}}!
     </h3>
+    <article>
     <div class="m-2 text-gray-700 text-base md:text-lg font-light leading-relaxed">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        {!!__('main.text-introduce')!!}
     </div>
+    </article>
   </div>
   <div class="w-full lg:w-5/12 px-4 mr-auto ml-auto">
     <div
@@ -30,9 +32,7 @@
           {{__('main.h1-mp')}} Tutor-Math
         </h4>
         <p class="text-md font-light mt-2 text-white">
-          The Arctic Ocean freezes every winter and much of the
-          sea-ice then thaws every summer, and that process will
-          continue whatever happens.
+          {{__('main.videodesc-introduce')}}
         </p>
       </blockquote>
     </div>

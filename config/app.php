@@ -2,6 +2,11 @@
 
 return [
 
+    // my ENV settings
+    'gacode' => env('GA_CODE', null),
+    'telegramchat' => env('TELEGRAM_CHAT', null),
+    'telegramadmin' => env('TELEGRAM_ADMIN', null),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

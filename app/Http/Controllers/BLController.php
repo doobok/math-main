@@ -10,6 +10,7 @@ use App\Models\Promo;
 use App\Models\Lead;
 use Illuminate\Support\Facades\App;
 use Carbon\Carbon;
+use App\Notifications\TelegramNewLead;
 
 class BLController extends Controller
 {
@@ -131,6 +132,28 @@ class BLController extends Controller
 
        $lead->total = $lead->cost - $lead->discount;
        $lead->save();
+
+       // формируем сообщение
+        $phone = '+38' . $request->phone;
+        $marker = $request->marker;
+        $name = $request->firstname . ' ' . $request->lastname;
+
+        // firstname: this.firstname,
+        // lastname: this.lastname,
+        // phone: this.phoneNum,
+        // cityId: this.city,
+        // subjectId: this.subject,
+        // klass: this.klass,
+        // priceId: this.pricePack,
+        // cost: this.total,
+        // discount: this.discount,
+        // promoStatus: this.promoDdiscount.valid,
+        // promo: this.promo,
+        // marker: this.lead.marker,
+        // fullForm: this.fullForm,
+        //
+        //telegram notification
+        Notification::send('', new TelegramNewLead($marker, $phone, $name));
 
        return response()->json(['success' => true]);
     }

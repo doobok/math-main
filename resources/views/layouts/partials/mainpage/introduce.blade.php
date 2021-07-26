@@ -13,7 +13,7 @@
     <div
       class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-gray-700"
     >
-    <iframe height="400" class="w-full" src="https://www.youtube.com/embed/X56UxgcbRNw?&controls=0&loop=1&color=white" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe height="400" class="w-full" src="https://www.youtube.com/embed/anu1By13Dso?&controls=0&loop=1&color=white" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
       <blockquote class="relative p-8 mb-4">
         <svg

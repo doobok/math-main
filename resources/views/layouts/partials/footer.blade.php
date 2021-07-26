@@ -90,7 +90,7 @@
               </li> --}}
             </ul>
           </div>
-          <div class="w-full lg:w-4/12 px-4">
+          {{-- <div class="w-full lg:w-4/12 px-4">
             <span
               class="block uppercase text-gray-600 text-sm font-semibold mb-2"
               >Other Resources</span
@@ -125,7 +125,7 @@
                 >
               </li>
             </ul>
-          </div>
+          </div> --}}
         </div>
       </div>
     </div>

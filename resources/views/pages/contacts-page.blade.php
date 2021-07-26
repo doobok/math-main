@@ -3,8 +3,10 @@
 @section('head')
 @component('components.meta')
 
-  @slot('title') Tutor-Math @endslot
-  @slot('description') Desc  @endslot
+  @slot('title') {{__('seo.contacts-title')}} @endslot
+  @slot('description') {{__('seo.contacts-desc', [
+      'phone' => setting('info.phone')
+    ])}} @endslot
   @slot('image') /contacts.jpg @endslot
   @slot('date') {{config('app.startdate')}} @endslot
 

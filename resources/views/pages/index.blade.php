@@ -3,10 +3,11 @@
 @section('head')
 @component('components.meta')
 
-  @slot('title') Tutor-Math @endslot
-  @slot('description') Desc
-  @endslot
-  @slot('image') /main.png @endslot
+  @slot('title') {{__('seo.mp-title')}} @endslot
+  @slot('description') {{__('seo.mp-desc', [
+      'phone' => setting('info.phone')
+    ])}} @endslot
+  @slot('image') /tutor-math.jpg @endslot
   @slot('date') {{config('app.startdate')}} @endslot
 
 @endcomponent

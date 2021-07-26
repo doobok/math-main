@@ -10,6 +10,7 @@ use App\Models\Promo;
 use App\Models\Lead;
 use Illuminate\Support\Facades\App;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Notification;
 use App\Notifications\TelegramNewLead;
 
 class BLController extends Controller

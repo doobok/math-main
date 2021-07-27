@@ -43,6 +43,10 @@ class PagesController extends Controller
         case 'reviews':
           return view('pages.reviews-page', ['reviews' => Review::where('active', 1)->orderBy('order')->get()]);
         break;
+        // check services
+        case 'services':
+          return view('pages.services-page', ['services' => Subject::where('active', 1)->orderBy('order')->get()->translate( App::currentLocale() )]);
+        break;
         // check online
         case 'online':
           return view('pages.online-page', ['page' => Page::where('slug', 'online')->first()]);

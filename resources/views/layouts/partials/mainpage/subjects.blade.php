@@ -53,7 +53,7 @@
             {{-- tags --}}
             <div class="flex flex-wrap justify-center p-4 space-x-1">
               @foreach ($subject->tags->where('active', 1) as $tag)
-                <a href="{{route('page', $tag->url)}}" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1" title="{{$tag->title}}">{{$tag->name}}</a>
+                <a href="{{route('page', $tag->url)}}" class="rounded-full p-1 bg-gray-700 text-white hover:bg-yellow-400 hover:text-gray-900 text-xs mb-1" title="{{$tag->getTranslatedAttribute('name')}}">{{$tag->getTranslatedAttribute('name')}}</a>
               @endforeach
             </div>
             {{-- tags end --}}

@@ -15,7 +15,7 @@ class PagesController extends Controller
     public function index()
     {
         $reviews = Review::where('active', 1)->where('order', '>', 0)->orderBy('order')->get();
-        $subjects = Subject::where('active', 1)->orderBy('order')->select('id', 'h1', 'name', 'promodesc', 'svg')->get()->translate( App::currentLocale() );
+        $subjects = Subject::where('active', 1)->orderBy('order')->select('id', 'h1', 'name', 'promodesc', 'svg', 'slug')->get()->translate( App::currentLocale() );
         $tutors = Tutor::where('active', 1)->orderBy('order')->get()->translate( App::currentLocale() );
 
         $tutors_with_tags = collect();
@@ -46,6 +46,10 @@ class PagesController extends Controller
         // check online
         case 'online':
           return view('pages.online-page', ['page' => Page::where('slug', 'online')->first()]);
+        break;
+        // check groups
+        case 'groups':
+          return view('pages.groups-page', ['page' => Page::where('slug', 'groups')->first()]);
         break;
 
         default:

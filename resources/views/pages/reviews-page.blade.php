@@ -3,8 +3,10 @@
 @section('head')
 @component('components.meta')
 
-  @slot('title') Tutor-Math @endslot
-  @slot('description') Desc  @endslot
+  @slot('title') {{__('seo.reviews-title')}} @endslot
+  @slot('description') {{__('seo.reviews-desc', [
+      'phone' => setting('info.phone')
+    ])}} @endslot
   @slot('image') /reviews.jpg @endslot
   @slot('date') {{config('app.startdate')}} @endslot
 
@@ -16,7 +18,7 @@
   @include('layouts.partials.firstscreen', [
     'img' => "/reviews.jpg",
     'h1' => __('site.reviews'),
-    'desc' => null,
+    'desc' => __('site.reviews-desc'),
   ])
 
   <section class="pb-4 md:pb-8 relative block bg-green-500">

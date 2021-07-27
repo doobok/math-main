@@ -42,7 +42,11 @@
                 {!!$subject->svg!!}
               </svg>
             </div>
-            <h6 class="text-xl font-semibold">{{$subject->name}}</h6>
+            <h6 class="text-xl font-semibold">
+              <a href="{{route('page', $subject->slug)}}" title="{{$subject->name}}">
+                {{$subject->name}}
+              </a>
+            </h6>
             <p class="mt-2 mb-4 text-gray-600">
               {{$subject->promodesc}}
             </p>

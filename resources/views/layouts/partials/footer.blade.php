@@ -67,6 +67,13 @@
                   >{{__('site.about-us')}}</a
                 >
               </li>
+              <li>
+                <a
+                  class="text-gray-700 hover:text-gray-500 font-semibold block pb-2 text-sm"
+                  href="{{route('page', 'reviews')}}"
+                  >{{__('site.reviews')}}</a
+                >
+              </li>
               {{-- <li>
                 <a
                   class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"

@@ -1,5 +1,5 @@
 <title>{{ $title }}</title>
-<meta name="keywords" content="{{ $title }} - {{ config('app.name') }}">
+<meta name="keywords" content="{{ $title }}">
 <meta name="description" content="{{ $description }}">
 <meta name="robots" content="index, follow">
 <meta name="author" content="{{ config('app.name') }}">
@@ -9,11 +9,11 @@
 <meta name="twitter:site" content="@sntl">
 <meta name="twitter:creator" content="@sntl">
 <meta name="twitter:url" content="{{url()->current()}}">
-<meta name="twitter:title" content="{{ $title }} - {{ config('app.name') }}">
+<meta name="twitter:title" content="{{ $title }}">
 <meta name="twitter:description" content="{{ $description }}">
 <meta name="twitter:image" content="{{ asset($image) }}">
-<meta name="DC.title" content="{{ $title }} - {{ config('app.name') }}">
-<meta name="DC.keywords" CONTENT="{{ $title }} - {{ config('app.name') }}">
+<meta name="DC.title" content="{{ $title }}">
+<meta name="DC.keywords" CONTENT="{{ $title }}">
 <meta name="DC.creator" content="{{ config('app.name') }}">
 <meta name="DC.description" content="{{ $description }}">
 <meta name="DC.publisher" content="{{ config('app.name') }}">
@@ -28,7 +28,7 @@
 <meta name="DC.rightsHolder" content="{{ config('app.name') }}">
 <meta property="og:url"           content="{{url()->current()}}">
 <meta property="og:type"          content="article">
-<meta property="og:title"         content="{{ $title }} - {{ config('app.name') }}">
+<meta property="og:title"         content="{{ $title }}">
 <meta property="og:description"   content="{{ $description }}">
 <meta property="og:image"         content="{{ asset($image) }}">
 {{-- <meta property="fb:app_id" content="179782597117333"> --}}

@@ -55,14 +55,7 @@
             </a>
           @endif
           <div class="flex items-center mr-1">
-            <a href="#"
-              class="bg-blue-400 hover:bg-red-400 text-white active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none flex"
-              type="button"
-              style="transition: all 0.15s ease 0s;"
-            >
-              <svg class="h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17v-10l9 5.146-9 4.854z"/></svg>
-              Online
-            </a>
+            <online-button></online-button>
           </div>
           @if (app()->getLocale() != 'uk')
               <a href="{{route('setlocale', ['lang' => 'uk'])}}" class="text-white hover:text-gray-300 px-2 py-3 text-sm uppercase font-bold" rel="nofollow">UA</a>

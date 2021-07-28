@@ -105,13 +105,14 @@
                   <p class="mt-2 mb-4 text-gray-600">
                     {{__('main.whywe-4desc')}}
                   </p>
-                  <button
+                  <a
+                    href="{{route('page', 'online')}}"
                     class="bg-green-400 text-white active:bg-gray-700 text-sm font-bold uppercase mb-4 py-4 px-8 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                     type="button"
                     style="transition: all 0.15s ease 0s;"
                   >
-                    Дізнатись більше
-                  </button>
+                    {{__('site.know-more')}}
+                  </a>
                 </div>
               </div>
             </div>

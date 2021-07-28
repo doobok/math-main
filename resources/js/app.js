@@ -21,6 +21,7 @@ Vue.component('tutors-carousel', require('./components/TutorsCarousel.vue').defa
 Vue.component('prices-cards', require('./components/PricesCards.vue').default);
 Vue.component('lead-form', require('./components/LeadForm.vue').default);
 Vue.component('smpl-button', require('./components/SimpleButton.vue').default);
+Vue.component('online-button', require('./components/OnlineList.vue').default);
 
 const app = new Vue({
     el: '#app',

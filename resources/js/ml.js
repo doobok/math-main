@@ -44,6 +44,8 @@ export default new MLCreate({
         fillForm: 'Заполните форму',
         formSended: 'Ваша заявка успешно отправлена, уже совсем скоро мы с Вами свяжемся, будьте на связи',
         backTosite: 'Продолжить знакомство с сайтом',
+        onlineListTitle: 'Выбери свой регион',
+        onlineRoom: 'войти',
     }),
 
     new MLanguage('uk').create({
@@ -84,6 +86,8 @@ export default new MLCreate({
         fillForm: 'Заповніть форму',
         formSended: 'Ваша заявка успішно відправлена, вже зовсім скоро ми з Вами звʼяжемось, будьте на звʼязку',
         backTosite: 'Продовжити знайомство з сайтом',
+        onlineListTitle: 'Обери свій регіон',
+        onlineRoom: 'увійти',
     }),
 
   ]

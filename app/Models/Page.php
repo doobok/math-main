@@ -11,5 +11,5 @@ class Page extends Model
     use HasFactory;
     use Translatable;
 
-    protected $translatable = ['title', 'description', 'h1', 'text'];
+    protected $translatable = ['title', 'description', 'h1', 'text', 'subtitle'];
 }

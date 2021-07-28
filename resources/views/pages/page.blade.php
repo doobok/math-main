@@ -16,7 +16,7 @@
   @include('layouts.partials.firstscreen', [
     'img' => Voyager::image( $page->image ),
     'h1' => $page->getTranslatedAttribute('h1'),
-    'desc' => null,
+    'desc' => $page->getTranslatedAttribute('subtitle'),
   ])
 
   <section class="pb-4 md:pb-8 relative block bg-green-500">
@@ -86,7 +86,12 @@
 
     </div>
   </section>
-
+  @if ($page->prices)
+    @include('layouts.partials.mainpage.pricing')
+  @endif
+  @if ($page->caltoaction)
+    @include('layouts.partials.mainpage.todo-block')
+  @endif
 
 
 @endsection

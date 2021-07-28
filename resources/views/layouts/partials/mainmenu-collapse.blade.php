@@ -39,5 +39,18 @@
   </li>
   @endforeach
 
+  <div class="flex flex-wrap justify-center my-2">
+    <div class="flex items-center mr-1">
+      <online-button></online-button>
+    </div>
+    @if (app()->getLocale() != 'uk')
+        <a href="{{route('setlocale', ['lang' => 'uk'])}}" class="text-gray-500 hover:text-gray-300 px-2 py-3 text-sm uppercase font-bold" rel="nofollow">UA</a>
+    @endif
+    @if (app()->getLocale() != 'ru')
+        <a href="{{route('setlocale', ['lang' => 'ru'])}}" class="text-gray-500 hover:text-gray-300 px-2 py-3 text-sm uppercase font-bold" rel="nofollow">RU</a>
+    @endif
+
+  </div>
+
 </ul>
 </div>

@@ -2,7 +2,7 @@
   <transition name="modal">
     <div v-show="formstatus" class="modal-mask">
       <div class="modal-wrapper">
-        <div class="modal-container text-gray-800 h-full lg:h-auto">
+        <div class="modal-container text-gray-800 h-full ">
 
           <div class="relative">
             <button @click="close" class="text-white absolute top-0 right-0">
@@ -54,7 +54,7 @@
             <div id="phone" class="w-full p-2 relative">
               <span class="text-xs text-gray-400">{{$ml.get('phone')}}</span>
               <input
-                type="text"
+                type="text" name="password" autocomplete="new-password"
                 v-model="phone"
                 ref="phone"
                 class="border-0 p-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
@@ -126,12 +126,12 @@
               -- {{$ml.get('selectPrice')}} --
             </div>
 
-            <div v-if="promoShow && promoDdiscount.valid != 'yes'" class="p-2 flex w-full">
+            <div v-if="promoShow && promoDdiscount.valid != 'yes'" class="p-2 flex flex-wrap justify-center w-full">
 
               <input
                 type="text"
                 v-model="promo"
-                class="border-0 px-3 my-2 placeholder-gray-400 text-gray-700 bg-yellow-100 rounded text-xl shadow focus:outline-none focus:ring flex-grow text-center"
+                class="border-0 px-3 my-2 py-3 placeholder-gray-400 text-gray-700 bg-yellow-100 rounded text-xl shadow focus:outline-none focus:ring flex-grow text-center"
                 :placeholder="$ml.get('promo')"
                 @input="updateText($event.target.value)"
               />
@@ -145,8 +145,10 @@
             </div>
 
             <div v-if="total" class="w-full m-2 text-white text-center text-sm">
-              <span class="p-3 border-gray-400 border-2 border-dotted rounded">
-                {{$ml.get('totalsumm')}} <span class="text-base font-bold text-green-400">{{new Intl.NumberFormat('ru-RU').format(total - discount)}} грн.</span>
+              <span class="p-3 border-gray-400 border-2 border-dotted rounded flex flex-wrap justify-center">
+                <span>
+                  {{$ml.get('totalsumm')}} <span class="text-base font-bold text-green-400">{{new Intl.NumberFormat('ru-RU').format(total - discount)}} грн. &nbsp;</span>
+                </span>
                 <span v-if="discount"> {{$ml.get('discountsumm')}} <span class="text-base font-bold text-red-400">{{new Intl.NumberFormat('ru-RU').format(discount)}} грн.</span></span>
               </span>
             </div>

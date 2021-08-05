@@ -32,4 +32,4 @@
 <link rel="manifest" href="/site.webmanifest">
 
 <link href="{{ mix('css/app.css')}}" rel="stylesheet">
-{{-- <link href='{{ route('sitemap') }}' rel='alternate' title='Sitemap' type='application/rss+xml'/> --}}
+<link href='{{ route('sitemap') }}' rel='alternate' title='Sitemap' type='application/rss+xml'/>

@@ -86,7 +86,7 @@
           <div class="flex flex-wrap">
 
           @foreach ($services as $subject)
-            <div class="pt-6 px-4 text-center w-full">
+            <div class="pt-4 px-4 text-center w-full">
 
               <div
                 class="relative flex flex-col min-w-0 break-words bg-blue-100 w-full mb-1 lg:mb-8 shadow-lg rounded-lg"

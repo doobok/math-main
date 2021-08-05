@@ -10,7 +10,7 @@
               <div class="px-4 py-5 flex-auto">
                 <div class="text-white p-3 text-center inline-flex items-center justify-center w-26 h-26 mb-5 shadow-lg rounded-full bg-green-400">
                 <div class="relative w-24 h-24">
-                  <img class="rounded-full border border-white shadow-sm w-full" :src="'/storage/' + item.image" :alt="$ml.get('review') + ' ' + item.name" />
+                  <img class="rounded-full border border-white shadow-sm w-full" :src="getImg(item.image)" :alt="$ml.get('review') + ' ' + item.name" />
                 </div>
                 </div>
                 <h6 class="text-xl font-semibold">{{item.name}}</h6>
@@ -66,6 +66,13 @@ export default {
   methods: {
      updateWidth() {
        this.width = window.innerWidth;
+     },
+     getImg(img) {
+       if (img) {
+         return '/storage/' + img;
+       } else {
+         return '/review-ava.png'
+       }
      },
   },
   created() {

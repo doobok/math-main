@@ -50,7 +50,7 @@
 
   </section>
 
-  <section class="pb-20 relative block bg-white">
+  <section class="pb-12 relative block bg-white">
     <div
       class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
       style="height: 80px;"
@@ -70,7 +70,7 @@
         ></polygon>
       </svg>
     </div>
-    <div class="container mx-auto px-0 md:px-4 md:pb-12 lg:pb-24">
+    <div class="container mx-auto px-0 md:px-4 md:pb-12">
       <div class="flex justify-center">
         <div class="w-full xl:w-8/12 px-8 md:px-24">
 
@@ -80,6 +80,8 @@
               ],
             ])
           @endcomponent
+
+        @include('layouts.partials.subject-page-nav')
 
         <article>
           <div class="bg-white w-full text-xl md:text-2xl text-gray-800 leading-normal" style="font-family:Georgia,serif;">
@@ -99,6 +101,7 @@
   </section>
 
 
+  @include('layouts.partials.mainpage.reviews')
   @include('layouts.partials.mainpage.tutors')
   @include('layouts.partials.mainpage.pricing')
   @include('layouts.partials.mainpage.todo-block')

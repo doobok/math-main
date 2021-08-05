@@ -61,6 +61,7 @@ class PagesController extends Controller
           $subject = Subject::where('slug', $slug)->first();
           if ($subject != null) {
             $tutors = Tutor::where('active', 1)->orderBy('order')->get()->translate( App::currentLocale() );
+            $reviews = Review::where('active', 1)->where('order', '>', 0)->orderBy('order')->get();
 
             $tutors_with_tags = collect();
             foreach ($tutors as $tutor) {
@@ -70,6 +71,7 @@ class PagesController extends Controller
             }
             return view('pages.subject-page', [
               'page' => $subject,
+              'reviews' => $reviews,
               'tutors' => $tutors_with_tags,
             ]);
           };

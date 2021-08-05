@@ -1,4 +1,4 @@
-<section class="pb-20 relative block bg-gray-300">
+<section id="prices" class="pb-20 relative block bg-gray-300">
   <div
     class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
     style="height: 80px;"

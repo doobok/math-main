@@ -138,23 +138,19 @@ class BLController extends Controller
         $phone = '+38' . $request->phone;
         $marker = $request->marker;
         $name = $request->firstname . ' ' . $request->lastname;
+        $cityId = $request->cityId;
+        $subjectId = $request->subjectId;
+        $priceId = $request->priceId;
+        $klass = $request->klass;
+        $cost = $request->cost;
+        $discount = $request->discount;
+        $total = $cost - $discount;
+        $promo = $request->promo;
+        $promoStatus = $request->promoStatus;
+        $fullForm = $request->fullForm;
 
-        // firstname: this.firstname,
-        // lastname: this.lastname,
-        // phone: this.phoneNum,
-        // cityId: this.city,
-        // subjectId: this.subject,
-        // klass: this.klass,
-        // priceId: this.pricePack,
-        // cost: this.total,
-        // discount: this.discount,
-        // promoStatus: this.promoDdiscount.valid,
-        // promo: this.promo,
-        // marker: this.lead.marker,
-        // fullForm: this.fullForm,
-        //
         //telegram notification
-        Notification::send('', new TelegramNewLead($marker, $phone, $name));
+        Notification::send('', new TelegramNewLead($marker, $phone, $name, $cityId, $subjectId, $priceId, $klass, $cost, $discount, $total, $promo, $promoStatus, $fullForm));
 
        return response()->json(['success' => true]);
     }

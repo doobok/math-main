@@ -4,7 +4,7 @@
 @component('components.meta')
 
   @slot('title') {{$page->getTranslatedAttribute('title')}} @endslot
-  @slot('description') {{$page->getTranslatedAttribute('description')}}  @endslot
+  @slot('description') {{$page->getTranslatedAttribute('description')}} {{__('seo.desc-tail', ['phone' => setting('info.phone')])}}  @endslot
   @slot('image') {{ Voyager::image( $page->image ) }} @endslot
   @slot('date') {{$page->created_at}} @endslot
 
@@ -73,8 +73,12 @@
             ])
           @endcomponent
 
+          @if ($page->prices)
+            @include('layouts.partials.page-price-nav')
+          @endif
+
           <article>
-            <div class="bg-white w-full text-xl md:text-2xl text-gray-800 leading-normal" style="font-family:Georgia,serif;">
+            <div class="bg-white w-full text-lg md:text-2xl text-gray-800 leading-normal" style="font-family:Georgia,serif;">
 
               {!! $page->getTranslatedAttribute('text') !!}
 

@@ -73,8 +73,10 @@
             ])
           @endcomponent
 
+          @include('layouts.partials.page-price-nav')
+
           <article>
-            <div class="bg-white w-full text-xl md:text-2xl text-gray-800 leading-normal" style="font-family:Georgia,serif;">
+            <div class="bg-white w-full text-lg md:text-2xl text-gray-800 leading-normal" style="font-family:Georgia,serif;">
 
               {!! $page->getTranslatedAttribute('text') !!}
 
@@ -87,7 +89,7 @@
     </div>
   </section>
 
-  <section class="pb-20 relative block bg-yellow-300">
+  <section id="prices" class="pb-20 relative block bg-yellow-300">
     <div
       class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
       style="height: 80px;"

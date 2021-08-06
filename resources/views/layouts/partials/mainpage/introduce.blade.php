@@ -1,6 +1,6 @@
 <div class="flex flex-wrap items-center pt-16 md:pb-12 lg:pt-24 lg:pb-24">
   <div class="w-full lg:w-5/12 px-4 mr-auto ml-auto pb-4">
-    <h3 class="text-3xl mb-4 font-semibold leading-normal">
+    <h3 class="text-xl md:text-3xl mb-4 font-semibold leading-normal">
       🔰 {{__('main.h2-introduce')}}!
     </h3>
     <article>

@@ -76,7 +76,7 @@
           @endcomponent
 
           <article>
-            <div class="bg-white w-full text-xl md:text-2xl text-gray-800 leading-normal" style="font-family:Georgia,serif;">
+            <div class="bg-white w-full text-lg md:text-2xl text-gray-800 leading-normal" style="font-family:Georgia,serif;">
               <blockquote>
                 {!! __('site.services-pre-text') !!}
               </blockquote>

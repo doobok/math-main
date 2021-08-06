@@ -34,15 +34,15 @@
     @foreach ($subjects as $subject)
       <div class="lg:pt-8 pt-6 w-full md:w-4/12 px-4 text-center">
         <div
-          class="relative flex flex-col min-w-0 break-words bg-white w-full mb-1 lg:mb-8 shadow-lg rounded-lg"
+          class="relative text-gray-600 hover:text-green-500 flex flex-col min-w-0 break-words bg-white w-full mb-1 lg:mb-8 shadow-lg rounded-lg"
         >
           <div class="px-4 py-5 flex-auto">
-            <div class="text-gray-600 flex justify-center p-3 mb-5">
+            <div class="flex justify-center p-3 mb-5">
               <svg class="h-16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" fill="currentColor">
                 {!!$subject->svg!!}
               </svg>
             </div>
-            <h6 class="text-xl font-semibold">
+            <h6 class="text-xl text-gray-600 font-semibold no-underline hover:underline">
               <a href="{{route('page', $subject->slug)}}" title="{{$subject->name}}">
                 {{$subject->name}}
               </a>

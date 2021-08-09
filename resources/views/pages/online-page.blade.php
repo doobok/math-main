@@ -4,7 +4,7 @@
 @component('components.meta')
 
   @slot('title') {{$page->getTranslatedAttribute('title')}} @endslot
-  @slot('description') {{$page->getTranslatedAttribute('description')}}  @endslot
+  @slot('description') {{$page->getTranslatedAttribute('description')}} {{__('seo.desc-tail', ['phone' => setting('info.phone')])}}  @endslot
   @slot('image') {{ Voyager::image( $page->image ) }} @endslot
   @slot('date') {{$page->created_at}} @endslot
 
@@ -42,7 +42,7 @@
 
   </section>
 
-  <section class="pb-20 relative block bg-white">
+  <section class="pb-12 relative block bg-white">
     <div
       class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
       style="height: 80px;"
@@ -82,6 +82,10 @@
 
             </div>
           </article>
+
+          <star-rating
+          slug="{{$page->slug}}"
+          ></star-rating>
 
         </div>
       </div>
@@ -131,5 +135,6 @@
 
   @include('layouts.partials.mainpage.todo-block')
 
-
+  {{-- schema --}}
+      @include('layouts.schema.post-rating')
 @endsection

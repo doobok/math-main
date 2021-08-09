@@ -22,6 +22,7 @@ Vue.component('prices-cards', require('./components/PricesCards.vue').default);
 Vue.component('lead-form', require('./components/LeadForm.vue').default);
 Vue.component('smpl-button', require('./components/SimpleButton.vue').default);
 Vue.component('online-button', require('./components/OnlineList.vue').default);
+Vue.component('star-rating', require('./components/StarRating.vue').default);
 
 const app = new Vue({
     el: '#app',

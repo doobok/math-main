@@ -42,7 +42,7 @@
 
   </section>
 
-  <section class="pb-20 relative block bg-white">
+  <section class="pb-12 relative block bg-white">
     <div
       class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
       style="height: 80px;"
@@ -85,6 +85,10 @@
             </div>
           </article>
 
+          <star-rating
+          slug="{{$page->slug}}"
+          ></star-rating>
+
         </div>
       </div>
 
@@ -97,5 +101,6 @@
     @include('layouts.partials.mainpage.todo-block')
   @endif
 
-
+  {{-- schema --}}
+      @include('layouts.schema.post-rating')
 @endsection

@@ -34,4 +34,6 @@ Route::group(['prefix' => 'v1'], function () {
   Route::get('check-promo', 'App\Http\Controllers\BLController@checkPromo');
   Route::post('send-lead', 'App\Http\Controllers\BLController@sendLead');
   Route::get('get-menu', 'App\Http\Controllers\BLController@getMenu');
+  Route::get('get-rating', 'App\Http\Controllers\RatingController@getRating');
+  Route::post('set-rating', 'App\Http\Controllers\RatingController@setRating');
 });

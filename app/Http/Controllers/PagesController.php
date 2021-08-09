@@ -8,6 +8,7 @@ use App\Models\Tutor;
 use App\Models\Subject;
 use App\Models\City;
 use App\Models\Page;
+use App\Models\Rating;
 use Illuminate\Support\Facades\App;
 
 class PagesController extends Controller
@@ -34,6 +35,14 @@ class PagesController extends Controller
 
     public function page($slug)
     {
+      // get rating
+      $rating = Rating::where('slug', $slug)->first();
+        if ($rating === null) {
+            $rating = collect();
+            $rating->rating = 5;
+            $rating->count = 1;
+          }
+
       switch ($slug) {
         // check contacts
         case 'contacts':
@@ -49,11 +58,17 @@ class PagesController extends Controller
         break;
         // check online
         case 'online':
-          return view('pages.online-page', ['page' => Page::where('slug', 'online')->first()]);
+          return view('pages.online-page', [
+            'page' => Page::where('slug', 'online')->first(),
+            'rating' => $rating,
+          ]);
         break;
         // check groups
         case 'groups':
-          return view('pages.groups-page', ['page' => Page::where('slug', 'groups')->first()]);
+          return view('pages.groups-page', [
+            'page' => Page::where('slug', 'groups')->first(),
+            'rating' => $rating,
+          ]);
         break;
 
         default:
@@ -73,6 +88,7 @@ class PagesController extends Controller
               'page' => $subject,
               'reviews' => $reviews,
               'tutors' => $tutors_with_tags,
+              'rating' => $rating,
             ]);
           };
 
@@ -80,6 +96,7 @@ class PagesController extends Controller
 
             return view('pages.page', [
               'page' => $page,
+              'rating' => $rating,
             ]);
 
           break;

@@ -95,6 +95,10 @@
 
           </article>
 
+          <star-rating
+          slug="{{$page->slug}}"
+          ></star-rating>
+
         </div>
       </div>
     </div>
@@ -108,5 +112,6 @@
 
 
 
-
+  {{-- schema --}}
+      @include('layouts.schema.post-rating')
 @endsection

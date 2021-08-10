@@ -139,8 +139,17 @@ class BLController extends Controller
         $marker = $request->marker;
         $name = $request->firstname . ' ' . $request->lastname;
         $cityId = $request->cityId;
+        if ($cityId) {
+          $cityId = City::where('id', $cityId)->value('name');
+        }
         $subjectId = $request->subjectId;
+        if ($subjectId) {
+          $subjectId = Subject::where('id', $subjectId)->value('name');
+        }
         $priceId = $request->priceId;
+        if ($priceId) {
+          $priceId = Price::where('id', $priceId)->value('name');
+        }
         $klass = $request->klass;
         $cost = $request->cost;
         $discount = $request->discount;
@@ -150,7 +159,37 @@ class BLController extends Controller
         $fullForm = $request->fullForm;
 
         //telegram notification
-        Notification::send('', new TelegramNewLead($marker, $phone, $name, $cityId, $subjectId, $priceId, $klass, $cost, $discount, $total, $promo, $promoStatus, $fullForm));
+        // Notification::send('', new TelegramNewLead($marker, $phone, $name, $cityId, $subjectId, $priceId, $klass, $cost, $discount, $total, $promo, $promoStatus, $fullForm));
+
+        // отправляем в retailCRM
+        $client = new \RetailCrm\ApiClient(
+            config('app.retailcrm_url'),
+            config('app.retailcrm_api'),
+            \RetailCrm\ApiClient::V4
+        );
+
+        try {
+            $response = $client->request->ordersCreate(array(
+                // 'summ' => $request->price, //цена
+                'externalId' => 'tm' . $lead->id, // Зовнішній ID заказа
+                'phone' => $phone, // телефон
+                'firstName' => $request->firstname, // Імʼя
+                'lastName' => $request->lastname, // Прізвище
+                'customerComment' => $subjectId . ' ' . $priceId, // тайтл кнопки
+                'discount' => $discount, // скидка
+                'items' => array(
+                  array(
+                    'initialPrice' => $cost, // цена заказа
+                  )
+                ),
+                'customFields' => array(
+                    'us_city' => $cityId,
+                    'us_class' => $klass
+                )
+            ));
+        } catch (\RetailCrm\Exception\CurlException $e) {
+            // echo "Connection error: " . $e->getMessage();
+        }
 
        return response()->json(['success' => true]);
     }

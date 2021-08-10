@@ -1,2 +1,5 @@
 User-agent: *
-Disallow:
+Allow: /
+
+Sitemap: https://tutor-math.com.ua/sitemap.xml
+Sitemap: https://tutor-math.com.ua/uk/sitemap.xml

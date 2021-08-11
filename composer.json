@@ -15,6 +15,7 @@
         "laravel-notification-channels/telegram": "^0.5.1",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
+        "maksa988/laravel-wayforpay": "^1.0",
         "retailcrm/api-client-php": "~5.0",
         "tcg/voyager": "^1.4"
     },

@@ -191,7 +191,7 @@ class BLController extends Controller
             // echo "Connection error: " . $e->getMessage();
         }
 
-       return response()->json(['success' => true]);
+       return response()->json(['success' => true, 'id' => $lead->id,  'total' => $lead->total,]);
     }
 
     public function getMenu(Request $request)

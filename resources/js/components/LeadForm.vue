@@ -112,7 +112,7 @@
               </select>
             </div>
 
-            <div class="m-3">
+            <div v-if="!promoShow" class="m-3">
               <label class="text-white text-sm">
                 <input v-model="promoShow" class="focus:outline-none focus:ring mr-1" type="checkbox"> {{$ml.get('getPromo')}}
               </label>
@@ -187,6 +187,15 @@
           <p class="text-base text-gray-300 m-3">
                 {{$ml.get('formSended')}} ☎️ 😉
           </p>
+          <a v-if="deal.total > 0" rel="nofollow" :href="payLink(deal.id)"
+            class="bg-yellow-400 text-gray-700 p-3 m-3 text-sm font-bold uppercase rounded shadow hover:shadow-lg outline-none focus:outline-none flex flex-wrap justify-center"
+          >
+            <span>{{$ml.get('payNow')}}</span>
+            <span class="mx-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.164 7.165c-1.15.191-1.702 1.233-1.231 2.328.498 1.155 1.921 1.895 3.094 1.603 1.039-.257 1.519-1.252 1.069-2.295-.471-1.095-1.784-1.827-2.932-1.636zm1.484 2.998l.104.229-.219.045-.097-.219c-.226.041-.482.035-.719-.027l-.065-.387c.195.03.438.058.623.02l.125-.041c.221-.109.152-.387-.176-.453-.245-.054-.893-.014-1.135-.552-.136-.304-.035-.621.356-.766l-.108-.239.217-.045.104.229c.159-.026.345-.036.563-.017l.087.383c-.17-.021-.353-.041-.512-.008l-.06.016c-.309.082-.21.375.064.446.453.105.994.139 1.208.612.173.385-.028.648-.36.774zm10.312 1.057l-3.766-8.22c-6.178 4.004-13.007-.318-17.951 4.454l3.765 8.22c5.298-4.492 12.519-.238 17.952-4.454zm-2.803-1.852c-.375.521-.653 1.117-.819 1.741-3.593 1.094-7.891-.201-12.018 1.241-.667-.354-1.503-.576-2.189-.556l-1.135-2.487c.432-.525.772-1.325.918-2.094 3.399-1.226 7.652.155 12.198-1.401.521.346 1.13.597 1.73.721l1.315 2.835zm2.843 5.642c-6.857 3.941-12.399-1.424-19.5 5.99l-4.5-9.97 1.402-1.463 3.807 8.406-.002.007c7.445-5.595 11.195-1.176 18.109-4.563.294.648.565 1.332.684 1.593z"/></svg>
+            </span>
+            <span>{{deal.total}} грн.</span>
+          </a>
           <button
             class="bg-green-400 text-gray-700 p-3 m-3 text-sm font-bold uppercase rounded shadow hover:shadow-lg outline-none focus:outline-none"
             type="button"
@@ -223,7 +232,7 @@ export default {
           city: '',
           fullForm: false,
           promo: '',
-          promoShow: false,
+          promoShow: true,
           promoDdiscount: {
             valid: false,
             type: '',
@@ -236,6 +245,10 @@ export default {
           },
           send: false, //нажатие кнопки
           sended: false, //индикатор отправки
+          deal: {
+            id: '',
+            total: '',
+          }
         }
     },
     methods: {
@@ -246,6 +259,8 @@ export default {
             .post('/api/v1/send-lead', this.collectedLead).then(response => {
               if (response.data.success === true) {
                 this.sended = true;
+                this.deal.id = response.data.id;
+                this.deal.total = response.data.total;
               }
             }).catch(err => {
               let e = { ...err    }
@@ -274,6 +289,13 @@ export default {
           .then(response => {
             this.promoDdiscount = response.data;
           });
+      },
+      payLink(u) {
+        if (this.$ml.current === 'uk') {
+          return '/uk/pay-page?deal=' + u
+        } else {
+          return '/pay-page?deal=' + u
+        }
       }
     },
     computed: {

@@ -19,6 +19,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], function(){
 
   Route::get('/', 'App\Http\Controllers\PagesController@index')->name('mainpage');
+  Route::get('/pay-page', 'App\Http\Controllers\PaysController@index')->name('pay');
   Route::get('/sitemap.xml', 'App\Http\Controllers\SitemapController@index')->name('sitemap');
   Route::get('/{slug}', 'App\Http\Controllers\PagesController@page')->name('page');
 

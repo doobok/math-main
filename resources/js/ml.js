@@ -46,6 +46,7 @@ export default new MLCreate({
         backTosite: 'Продолжить знакомство с сайтом',
         onlineListTitle: 'Выбери свой регион',
         onlineRoom: 'войти',
+        payNow: 'оплатить сейчас',
     }),
 
     new MLanguage('uk').create({
@@ -88,6 +89,7 @@ export default new MLCreate({
         backTosite: 'Продовжити знайомство з сайтом',
         onlineListTitle: 'Обери свій регіон',
         onlineRoom: 'увійти',
+        payNow: 'оплатити зараз',
     }),
 
   ]

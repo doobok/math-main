@@ -137,7 +137,7 @@ class BLController extends Controller
        // формируем сообщение
         $phone = '+38' . $request->phone;
         $marker = $request->marker;
-        $name = $request->firstname . ' ' . $request->lastname;
+        $name = 'id:' . $lead->id . $request->firstname . ' ' . $request->lastname;
         $cityId = $request->cityId;
         if ($cityId) {
           $cityId = City::where('id', $cityId)->value('name');

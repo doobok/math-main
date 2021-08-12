@@ -69,6 +69,9 @@ class PaysController extends Controller
           if ($deal->status != 'prepayed') {
             $deal->status = 'prepayed';
             $deal->save();
+
+            // відправляємо сповіщення
+            \Illuminate\Support\Facades\Notification::send('', new \App\Notifications\TelegramSimpleMSG('Замовлення id:' . $deal->id . ' оплачене'));
           }
           // Log::info('Aproved');
 

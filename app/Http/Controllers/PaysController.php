@@ -54,10 +54,50 @@ class PaysController extends Controller
 
     public function webhook(Request $request)
     {
-        Log::info(['message' => "вызов метода" ]);
-        Log::info(['message' => "сожержимое запроса: " . $request ]);
+        // отримуємо вміст запиту
+        $bodyContent = $request->getContent();
+        // декодуємо рядок
+        $obj = json_decode($bodyContent, true);
+        // якщо статус Підтверджений
+        if ($obj['transactionStatus'] === 'Approved') {
+          // отримуємо ІД замовлення в системі
+          $explode = explode('--', $obj['orderReference']);
+          $id = end($explode);
+          // шукаємо заявку
+          $deal = Lead::where('id', $id)->first();
+          // змінюємо статус заявки
+          if ($deal->status != 'prepayed') {
+            $deal->status = 'prepayed';
+            $deal->save();
+          }
+          // Log::info('Aproved');
 
-        return response()->json(['success' => true]);
+
+        }
+        // збираємо змінні для відповіді
+        $orderReference = $obj['orderReference'];
+        $status = "accept";
+        $time = time();
+
+        // $data = WayForPay::handleServiceUrl($request);
+        // return self::handle($request);
+
+
+        return response()->json(['orderReference' => $orderReference, 'status' => $status, 'time' => $time, 'signature' => '']);
 
     }
+
+    // public function handle(Request $request)
+    // {
+    //     return WayForPay::handleServiceUrl($request, function (\WayForPay\SDK\Domain\Transaction $transaction, $success) {
+    //         if($transaction->getReason()->isOK()) {
+    //
+    //             // Payment confirmation process and etc...
+    //
+    //             return $success();
+    //         }
+    //
+    //         return "Error: ". $transaction->getReason()->getMessage();
+    //     });
+    // }
 }

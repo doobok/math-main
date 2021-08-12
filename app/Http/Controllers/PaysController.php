@@ -7,6 +7,7 @@ use App\Models\Lead;
 use App\Models\Price;
 use Maksa988\WayForPay\Facades\WayForPay;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Log;
 
 class PaysController extends Controller
 {
@@ -16,7 +17,7 @@ class PaysController extends Controller
       $price = Price::where('id', $deal->priceId)->first()->translate( App::currentLocale() );
       $productName = 'Пакет «' . $price->name . '»';
 
-      $order_id = time() . '-' . $deal->id; // Payment`s order ID
+      $order_id = time() . '--' . $deal->id; // Payment`s order ID
       $amount = $deal->total; // Payment`s amount
       // $amount = 1; // Payment`s amount
       $currency = 'UAH';
@@ -44,5 +45,19 @@ class PaysController extends Controller
         'productName' => $productName,
 
       ]);
+    }
+
+    public function successful()
+    {
+      return view('pays.successful');
+    }
+
+    public function webhook(Request $request)
+    {
+        Log::info(['message' => "вызов метода" ]);
+        Log::info(['message' => "сожержимое запроса: " . $request ]);
+
+        return response()->json(['success' => true]);
+
     }
 }

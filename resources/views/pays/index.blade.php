@@ -26,5 +26,17 @@
 
   </div>
 
+  <script type="text/javascript">
+    window.addEventListener("message", function () {
+      if (event.data == 'WfpWidgetEventClose') {
+        location.reload() // window.location.reload()
+      }
+      if (event.data == 'WfpWidgetEventApproved') {
+        // перенаправляємо на сторінку підтвердження успішного платежу
+        window.location.href = "{{route('pay-suc')}}";
+      }
+    }, false);
+  </script>
+
 
 @endsection

@@ -159,7 +159,7 @@ class BLController extends Controller
         $fullForm = $request->fullForm;
 
         //telegram notification
-        // Notification::send('', new TelegramNewLead($marker, $phone, $name, $cityId, $subjectId, $priceId, $klass, $cost, $discount, $total, $promo, $promoStatus, $fullForm));
+        Notification::send('', new TelegramNewLead($marker, $phone, $name, $cityId, $subjectId, $priceId, $klass, $cost, $discount, $total, $promo, $promoStatus, $fullForm));
 
         // отправляем в retailCRM
         $client = new \RetailCrm\ApiClient(

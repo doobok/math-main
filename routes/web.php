@@ -16,10 +16,13 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
+Route::post('/wayforpay-public', 'App\Http\Controllers\PaysController@webhook');
+
 Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], function(){
 
   Route::get('/', 'App\Http\Controllers\PagesController@index')->name('mainpage');
   Route::get('/pay-page', 'App\Http\Controllers\PaysController@index')->name('pay');
+  Route::get('/pay-successful', 'App\Http\Controllers\PaysController@successful')->name('pay-suc');
   Route::get('/sitemap.xml', 'App\Http\Controllers\SitemapController@index')->name('sitemap');
   Route::get('/{slug}', 'App\Http\Controllers\PagesController@page')->name('page');
 

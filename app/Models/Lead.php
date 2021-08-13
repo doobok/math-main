@@ -34,7 +34,6 @@ class Lead extends Model
             $item = Lead::where('id', $instance->id)->first();
 
             if ($item->status != $instance->status) {
-              Log::info('do someting');
 
               // змінюємо статус замовлення в retailCRM
               if (setting('services.retailcrm_on') == true) {

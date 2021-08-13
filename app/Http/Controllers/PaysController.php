@@ -13,7 +13,11 @@ class PaysController extends Controller
 {
     public function index(Request $request)
     {
-      $deal = Lead::where('id', $request->deal)->select('id', 'firstname', 'lastname', 'total', 'priceId', 'created_at')->first();
+      $deal = Lead::where('id', $request->deal)->select('id', 'firstname', 'lastname', 'cost', 'total', 'priceId', 'created_at', 'status')->first();
+      // Якщо заявка не знайдена або її статус не нова - віддаємо 404
+      if (!$deal) { return abort(404); }
+      if ($deal->status != 'new') { return abort(404); }
+
       $price = Price::where('id', $deal->priceId)->first()->translate( App::currentLocale() );
       $productName = 'Пакет «' . $price->name . '»';
 

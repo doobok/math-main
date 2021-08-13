@@ -132,12 +132,13 @@ class BLController extends Controller
        $lead = Lead::create($request->all());
 
        $lead->total = $lead->cost - $lead->discount;
+       $lead->status = 'new';
        $lead->save();
 
        // формируем сообщение
         $phone = '+38' . $request->phone;
         $marker = $request->marker;
-        $name = 'id:' . $lead->id . $request->firstname . ' ' . $request->lastname;
+        $name = 'id: ' . $lead->id . $request->firstname . ' ' . $request->lastname;
         $cityId = $request->cityId;
         if ($cityId) {
           $cityId = City::where('id', $cityId)->value('name');
@@ -159,36 +160,42 @@ class BLController extends Controller
         $fullForm = $request->fullForm;
 
         //telegram notification
-        Notification::send('', new TelegramNewLead($marker, $phone, $name, $cityId, $subjectId, $priceId, $klass, $cost, $discount, $total, $promo, $promoStatus, $fullForm));
+        if (setting('services.telegram_notify') == true) {
+          Notification::send('', new TelegramNewLead($marker, $phone, $name, $cityId, $subjectId, $priceId, $klass, $cost, $discount, $total, $promo, $promoStatus, $fullForm));
+        }
 
         // отправляем в retailCRM
-        $client = new \RetailCrm\ApiClient(
-            config('app.retailcrm_url'),
-            config('app.retailcrm_api'),
-            \RetailCrm\ApiClient::V4
-        );
+        if (setting('services.retailcrm_on') == true) {
 
-        try {
-            $response = $client->request->ordersCreate(array(
-                // 'summ' => $request->price, //цена
-                'externalId' => 'tm' . $lead->id, // Зовнішній ID заказа
-                'phone' => $phone, // телефон
-                'firstName' => $request->firstname, // Імʼя
-                'lastName' => $request->lastname, // Прізвище
-                'customerComment' => $subjectId . ' ' . $priceId, // тайтл кнопки
-                'discount' => $discount, // скидка
-                'items' => array(
-                  array(
-                    'initialPrice' => $cost, // цена заказа
+          $client = new \RetailCrm\ApiClient(
+              config('app.retailcrm_url'),
+              config('app.retailcrm_api'),
+              \RetailCrm\ApiClient::V4
+          );
+
+          try {
+              $response = $client->request->ordersCreate(array(
+                  // 'summ' => $request->price, //цена
+                  'externalId' => 'tm' . $lead->id, // Зовнішній ID заказа
+                  'phone' => $phone, // телефон
+                  'firstName' => $request->firstname, // Імʼя
+                  'lastName' => $request->lastname, // Прізвище
+                  'customerComment' => $subjectId . ' ' . $priceId, // тайтл кнопки
+                  'discount' => $discount, // скидка
+                  'items' => array(
+                    array(
+                      'initialPrice' => $cost, // цена заказа
+                    )
+                  ),
+                  'customFields' => array(
+                      'us_city' => $cityId,
+                      'us_class' => $klass
                   )
-                ),
-                'customFields' => array(
-                    'us_city' => $cityId,
-                    'us_class' => $klass
-                )
-            ));
-        } catch (\RetailCrm\Exception\CurlException $e) {
-            // echo "Connection error: " . $e->getMessage();
+              ));
+          } catch (\RetailCrm\Exception\CurlException $e) {
+              // echo "Connection error: " . $e->getMessage();
+          }
+
         }
 
        return response()->json(['success' => true, 'id' => $lead->id,  'total' => $lead->total,]);

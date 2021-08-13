@@ -71,7 +71,9 @@ class PaysController extends Controller
             $deal->save();
 
             // відправляємо сповіщення
-            \Illuminate\Support\Facades\Notification::send('', new \App\Notifications\TelegramSimpleMSG('Замовлення id:' . $deal->id . ' оплачене'));
+            if (setting('services.telegram_notify') == true) {
+              \Illuminate\Support\Facades\Notification::send('', new \App\Notifications\TelegramSimpleMSG('Замовлення id:' . $deal->id . ' оплачене'));
+            }
           }
           // Log::info('Aproved');
 

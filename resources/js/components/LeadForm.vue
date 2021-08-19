@@ -171,7 +171,7 @@
               {{$ml.get('fillForm')}}
             </template>
             <template v-else>
-              {{$ml.get('send')}}
+              {{$ml.get('next')}}
             </template>
           </button>
 

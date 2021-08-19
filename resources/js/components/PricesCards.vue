@@ -14,8 +14,22 @@
       {{$ml.get(button.title)}}
     </button>
   </div>
+  <div class="flex flex-nowrap justify-center mt-4">
+    <button class="bg-gray-400 hover:bg-yellow-400 text-white text-sm font-bold uppercase my-3 py-2 px-4 rounded-l-full outline-none focus:outline-none"
+    v-bind:class="{ 'bg-green-400': packageselector }"
+    @click="packageselector = true"
+    type="button">
+      {{$ml.get('pricePackage')}}
+    </button>
+    <button class="bg-gray-400 hover:bg-yellow-400 text-white text-sm font-bold uppercase my-3 py-2 px-4 rounded-r-full outline-none focus:outline-none"
+    v-bind:class="{ 'bg-green-400': !packageselector }"
+    @click="packageselector = false"
+    type="button">
+      {{$ml.get('priceLesson')}}
+    </button>
+  </div>
 
-  <div class="flex flex-col sm:flex-row justify-center md:pt-12 my-12 sm:my-4">
+  <div class="flex flex-col sm:flex-row justify-center md:pt-8 my-12 sm:my-4">
 
     <template v-for="itm in itemsCards">
 
@@ -40,9 +54,9 @@
         </div>
         <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
           <div class="w-full text-3xl text-gray-600 font-bold text-center">
-            <span v-if="itm.discount && lead.cityDiscount" class="text-xl line-through text-red-400 align-top leading-3">{{itm.multipl * lead.cityIndex}}</span>
-            {{ discountPrice(itm.multipl, itm.discount) }}
-            <span class="text-base">грн./{{$ml.get('plesson')}}</span>
+            <span v-if="itm.discount && lead.cityDiscount" class="text-xl line-through text-red-400 align-top leading-3">{{ packagePrice(itm.multipl, itm.count) }}</span>
+            {{ discountPrice(itm.multipl, itm.discount, itm.count) }}
+            <span class="text-base">грн.</span>
           </div>
 
           <div class="flex items-center justify-center relative">
@@ -80,9 +94,9 @@
         </div>
         <div class="flex-none mt-auto rounded-b rounded-t-none overflow-hidden p-6 pb-12">
           <div class="w-full pt-6 text-4xl font-bold text-center">
-            <span v-if="itm.discount && lead.cityDiscount" class="text-2xl line-through text-red-400 align-top leading-3">{{itm.multipl * lead.cityIndex}}</span>
-            {{ discountPrice(itm.multipl, itm.discount) }}
-            <span class="text-base">грн./{{$ml.get('plesson')}}</span>
+            <span v-if="itm.discount && lead.cityDiscount" class="text-2xl line-through text-red-400 align-top leading-3">{{ packagePrice(itm.multipl, itm.count) }}</span>
+            {{ discountPrice(itm.multipl, itm.discount, itm.count) }}
+            <span class="text-base">грн.</span>
           </div>
           <div class="flex items-center justify-center relative">
             <img v-if="pays" class="top-0 right-0 h-8 absolute" src="/pays.png" alt="installment plan" />
@@ -128,6 +142,7 @@ export default {
         personal: [],
         group: [],
         online: [],
+        packageselector: true,
       }
   },
   mounted(){
@@ -141,11 +156,14 @@ export default {
       });
   },
   methods: {
-    discountPrice(multiply, disc) {
+    packagePrice(multiply, count) {
+      return multiply * this.lead.cityIndex * this.getCount(count);
+    },
+    discountPrice(multiply, disc, count) {
         if (disc) {
-          return Math.round(((multiply * this.lead.cityIndex) / 100) * (100 - this.lead.cityDiscount))
+          return Math.round(((multiply * this.lead.cityIndex) / 100) * (100 - this.lead.cityDiscount) * this.getCount(count))
         } else {
-          return multiply * this.lead.cityIndex
+          return multiply * this.lead.cityIndex * this.getCount(count)
         }
      },
      opnForm(mrk){
@@ -153,6 +171,13 @@ export default {
        this.$store.dispatch('PUSH_MARKER', 'Пакет: ' + mrk.name);
        this.$store.dispatch('PUSH_PICE', mrk.id);
      },
+     getCount(cnt) {
+       if (this.packageselector) {
+         return cnt
+       } else {
+         return 1
+       }
+     }
   },
   computed: {
     ...mapGetters(['lead']),

@@ -124,7 +124,7 @@
         </div>
       </div>
 
-      <prices-cards category="group"></prices-cards>
+      <prices-cards category="group" pays="{{setting('info.payment')}}"></prices-cards>
 
       <div class="text-sm pt-4 text-center">
         {{__('main.footnote-prices')}}

@@ -44,7 +44,9 @@
             {{ discountPrice(itm.multipl, itm.discount) }}
             <span class="text-base">грн./{{$ml.get('plesson')}}</span>
           </div>
-          <div class="flex items-center justify-center">
+
+          <div class="flex items-center justify-center relative">
+            <img v-if="pays" class="top-0 right-0 h-8 absolute" src="/pays.png" alt="installment plan" />
             <button
               class="bg-blue-400 text-white active:bg-gray-700 text-sm font-bold uppercase my-6 py-4 px-8 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
               type="button"
@@ -82,7 +84,8 @@
             {{ discountPrice(itm.multipl, itm.discount) }}
             <span class="text-base">грн./{{$ml.get('plesson')}}</span>
           </div>
-          <div class="flex items-center justify-center">
+          <div class="flex items-center justify-center relative">
+            <img v-if="pays" class="top-0 right-0 h-8 absolute" src="/pays.png" alt="installment plan" />
             <button
               class="bg-green-400 text-white active:bg-gray-700 text-sm font-bold uppercase my-6 py-4 px-8 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
               type="button"
@@ -104,7 +107,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  props: ['category'],
+  props: ['category','pays'],
   data(){
       return{
         buttons: {

@@ -1,4 +1,4 @@
-<div class="hidden lg:block my-5 sticky top-2 z-50">
+<div class="hidden lg:block my-5 sticky top-2 z-40">
 
 <ul class="flex flex-wrap justify-center">
 

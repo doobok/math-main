@@ -40,6 +40,11 @@
   @endforeach
 
   <div class="flex flex-wrap justify-center my-2">
+    @if (setting('info.get_vacancy'))
+      <div class="w-full flex justify-center">
+        <tutor-button></tutor-button>
+      </div>
+    @endif
     <div class="flex items-center mr-1">
       <online-button></online-button>
     </div>

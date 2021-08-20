@@ -63,6 +63,9 @@
             </a>
           @endif
           <div class="flex items-center mr-1">
+            @if (setting('info.get_vacancy'))
+              <tutor-button></tutor-button>
+            @endif
             <online-button></online-button>
           </div>
           @if (app()->getLocale() != 'uk')

@@ -81,7 +81,7 @@ export default {
     },
     opnForm(){
       this.$store.dispatch('TUGGLE_FORM', true);
-      this.$store.dispatch('PUSH_MARKER', this.theme.h1);
+      this.$store.dispatch('PUSH_MARKER', {'marker':this.theme.h1, 'type':''});
       this.$store.dispatch('PUSH_SUBJECT', this.theme.id);
     },
   },

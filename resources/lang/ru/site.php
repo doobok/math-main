@@ -42,7 +42,7 @@ return [
     'times-per-week' => 'раза в неделю',
     'course-price' => 'Cтоимость курса',
     'course-price-desc' => 'Выбери пакет, который тебе больше подходит',
-    'course-simple' => 'Обычный',
+    'course-simple' => 'Базовый',
     'course-extra' => 'Расширенный',
     'course-vip' => 'VIP',
     'course-all-that-and' => 'Все то, что и',

@@ -25,7 +25,7 @@ export default {
 
     opnForm(){
       this.$store.dispatch('TUGGLE_FORM', true);
-      this.$store.dispatch('PUSH_MARKER', this.txt);
+      this.$store.dispatch('PUSH_MARKER', {'marker':this.txt, 'type':''});
     },
   },
 

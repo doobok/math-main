@@ -84,7 +84,7 @@ export default {
      },
      opnForm(mrk){
        this.$store.dispatch('TUGGLE_FORM', true);
-       this.$store.dispatch('PUSH_MARKER', mrk);
+       this.$store.dispatch('PUSH_MARKER', {'marker':mrk, 'type':''});
      },
      getUll(u) {
        if (this.$ml.current === 'uk') {

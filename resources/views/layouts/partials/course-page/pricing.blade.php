@@ -57,13 +57,7 @@
           @if (setting('info.payment'))
             <img class="top-0 right-0 h-8 absolute" src="/pays.png" alt="installment plan" />
           @endif
-          <button
-            class="bg-blue-400 text-white active:bg-gray-700 text-sm font-bold uppercase my-6 py-4 px-8 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-            type="button"
-            style="transition: all 0.15s ease 0s;"
-          >
-          Купить
-          </button>
+          <smpl-buttoncrs price="{{$page->price}}" txt="Курс «{{$page->getTranslatedAttribute('h1') . ' (' . __('site.course-simple') . ')'}}»"></smpl-buttoncrs>
         </div>
       </div>
     </div>
@@ -96,13 +90,7 @@
             @if (setting('info.payment'))
               <img class="top-0 right-0 h-8 absolute" src="/pays.png" alt="installment plan" />
             @endif
-            <button
-              class="bg-blue-400 text-white active:bg-gray-700 text-sm font-bold uppercase my-6 py-4 px-8 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-              type="button"
-              style="transition: all 0.15s ease 0s;"
-            >
-            Купить
-            </button>
+            <smpl-buttoncrs price="{{$page->price_extra}}" txt="Курс «{{$page->getTranslatedAttribute('h1') . ' (' . __('site.course-extra') . ')'}}»"></smpl-buttoncrs>
           </div>
         </div>
       </div>
@@ -136,13 +124,7 @@
             @if (setting('info.payment'))
               <img class="top-0 right-0 h-8 absolute" src="/pays.png" alt="installment plan" />
             @endif
-            <button
-              class="bg-blue-400 text-white active:bg-gray-700 text-sm font-bold uppercase my-6 py-4 px-8 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-              type="button"
-              style="transition: all 0.15s ease 0s;"
-            >
-            Купить
-            </button>
+            <smpl-buttoncrs price="{{$page->price_vip}}" txt="Курс «{{$page->getTranslatedAttribute('h1') . ' (' . __('site.course-vip') . ')'}}»"></smpl-buttoncrs>
           </div>
         </div>
       </div>

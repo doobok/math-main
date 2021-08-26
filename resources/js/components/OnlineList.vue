@@ -13,9 +13,9 @@
     <transition name="modal">
       <div v-show="showlist" class="modal-mask">
         <div class="modal-wrapper">
-          <div class="modal-container text-white h-full lg:h-auto">
+          <div class="modal-container text-white h-full lg:h-auto flex justify-center">
 
-            <div class="relative">
+            <div class="relative modal-body">
               <button @click="close" class="text-white absolute top-0 right-0">
                 <svg  width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg>
               </button>

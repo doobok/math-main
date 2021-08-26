@@ -13,6 +13,8 @@ export default {
       cityIndex: 0,
       cityDiscount: 0,
       marker: '',
+      type: '',
+      price: '',
       subjectID: '',
       pricePackID: '',
 
@@ -43,6 +45,12 @@ export default {
     },
     pricePackID: state => {
       return state.lead.pricePackID;
+    },
+    leadType: state => {
+      return state.lead.type;
+    },
+    leadCustomPrice: state => {
+      return state.lead.price;
     },
   },
   mutations: {
@@ -77,8 +85,14 @@ export default {
     SET_MARKER: (state, payload) => {
         state.lead.marker = payload;
     },
+    SET_TYPE: (state, payload) => {
+        state.lead.type = payload;
+    },
     SET_SUBJECT: (state, payload) => {
       state.lead.subjectID = payload;
+    },
+    SET_CUSTOM_PRICE: (state, payload) => {
+      state.lead.price = payload;
     },
     SET_PICE: (state, payload) => {
       state.lead.pricePackID = payload;
@@ -133,10 +147,15 @@ export default {
       });
     },
     PUSH_MARKER : (context, payload) => {
-      context.commit('SET_MARKER', payload);
+      context.commit('SET_MARKER', payload.marker);
+      context.commit('SET_TYPE', payload.type);
     },
     PUSH_SUBJECT : (context, payload) => {
       context.commit('SET_SUBJECT', payload);
+      context.commit('SAVE_STATE');
+    },
+    PUSH_CUSTOM_PRICE : (context, payload) => {
+      context.commit('SET_CUSTOM_PRICE', payload);
       context.commit('SAVE_STATE');
     },
     PUSH_PICE : (context, payload) => {

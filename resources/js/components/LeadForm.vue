@@ -2,9 +2,9 @@
   <transition name="modal">
     <div v-show="formstatus" class="modal-mask">
       <div class="modal-wrapper">
-        <div class="modal-container text-gray-800 h-full ">
+        <div class="modal-container text-gray-800 h-full flex justify-center">
 
-          <div class="relative">
+          <div class="relative modal-body">
             <button @click="close" class="text-white absolute top-0 right-0">
               <svg  width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg>
             </button>
@@ -64,29 +64,7 @@
               <span v-if="$v.phone.$error" class="text-xs text-red-400 absolute -bottom-2 left-3">{{$ml.get('checkField')}}</span>
             </div>
 
-          <template id="fullform" v-if="fullForm">
-
-            <div class="w-full sm:w-1/2 p-2">
-              <span class="text-xs text-gray-400">{{$ml.get('subject')}}</span>
-              <select v-model="subject" @change="setSubject"
-              class="border-0 p-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full">
-                <option value="" disabled selected hidden>{{$ml.get('subject')}}</option>
-                <option
-                class="text-base leading-3"
-                v-for="s in subjects" :value="s.id">{{s.name}}</option>
-              </select>
-            </div>
-            <!-- class -->
-            <div class="w-full sm:w-1/2 p-2">
-              <span class="text-xs text-gray-400">{{$ml.get('class')}}</span>
-              <select v-model="klass"
-              class="border-0 p-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full">
-                <option value="" disabled selected hidden>{{$ml.get('class')}}</option>
-                <option
-                class="text-base leading-3"
-                v-for="c in 11" :value="c">{{c}} {{$ml.get('class')}}</option>
-              </select>
-            </div>
+            <template id="fullform" v-if="fullForm">
 
             <div class="w-full p-2">
               <span class="text-xs text-gray-400">{{$ml.get('city')}}</span>
@@ -99,18 +77,54 @@
               </select>
             </div>
 
-            <div class="w-full p-2">
-              <span class="text-xs text-gray-400">{{$ml.get('servicePack')}}</span>
-              <select v-model="pricePack" @change="setPrice"
-              class="border-0 p-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full">
-                <option value="" disabled selected hidden>{{$ml.get('servicePack')}}</option>
-                <option
-                class="text-base leading-3"
-                v-for="pack in prices" :value="pack.id">
-                  {{pack.name}} {{pack.count}} ({{$ml.get(priceGroup[pack.group])}})
-                </option>
-              </select>
-            </div>
+            <template id="courseform" v-if="courseform">
+              <div class="w-full p-2">
+                <span class="text-xs text-gray-400">{{$ml.get('servicePack')}}</span>
+                <input
+                  type="text"
+                  v-model="lead.marker"
+                  disabled
+                  class="border-0 p-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                />
+              </div>
+            </template>
+
+            <template v-else>
+              <div class="w-full sm:w-1/2 p-2">
+                <span class="text-xs text-gray-400">{{$ml.get('subject')}}</span>
+                <select v-model="subject" @change="setSubject"
+                class="border-0 p-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full">
+                  <option value="" disabled selected hidden>{{$ml.get('subject')}}</option>
+                  <option
+                  class="text-base leading-3"
+                  v-for="s in subjects" :value="s.id">{{s.name}}</option>
+                </select>
+              </div>
+              <!-- class -->
+              <div class="w-full sm:w-1/2 p-2">
+                <span class="text-xs text-gray-400">{{$ml.get('class')}}</span>
+                <select v-model="klass"
+                class="border-0 p-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full">
+                  <option value="" disabled selected hidden>{{$ml.get('class')}}</option>
+                  <option
+                  class="text-base leading-3"
+                  v-for="c in 11" :value="c">{{c}} {{$ml.get('class')}}</option>
+                </select>
+              </div>
+
+              <div class="w-full p-2">
+                <span class="text-xs text-gray-400">{{$ml.get('servicePack')}}</span>
+                <select v-model="pricePack" @change="setPrice"
+                class="border-0 p-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full">
+                  <option value="" disabled selected hidden>{{$ml.get('servicePack')}}</option>
+                  <option
+                  class="text-base leading-3"
+                  v-for="pack in prices" :value="pack.id">
+                    {{pack.name}} {{pack.count}} ({{$ml.get(priceGroup[pack.group])}})
+                  </option>
+                </select>
+              </div>
+            </template>
 
             <div v-if="!promoShow" class="m-3">
               <label class="text-white text-sm">
@@ -255,7 +269,7 @@ export default {
           deal: {
             id: '',
             total: '',
-          }
+          },
         }
     },
     methods: {
@@ -314,6 +328,9 @@ export default {
       ...mapGetters(['subjectID']),
       ...mapGetters(['cityID']),
       ...mapGetters(['pricePackID']),
+      ...mapGetters(['leadType']),//отримуємо тип ліда(для курсів)
+      ...mapGetters(['leadCustomPrice']),//отримуємо кастомну ціну(для курсів)
+
 
       collectedLead() {
         return {
@@ -323,7 +340,7 @@ export default {
           cityId: this.city,
           subjectId: this.subject,
           klass: this.klass,
-          priceId: this.pricePack,
+          priceId: this.getPackId,
           cost: this.total,
           discount: this.discount,
           promoStatus: this.promoDdiscount.valid,
@@ -333,6 +350,11 @@ export default {
         };
       },
       total() {
+        // для курсів
+        if (this.leadType) {
+            return this.leadCustomPrice;
+        }
+        // для пакетів
         if (this.pricePack) {
           let price = this.prices.find(p => {
             return p.id === this.pricePack
@@ -345,6 +367,23 @@ export default {
       },
       discount() {
         if (this.total) {
+          // рахуємо знижку для курсів (лише промокод)
+          if (this.leadType) {
+            let discount = 0
+
+            if (this.promoDdiscount.valid === 'yes') {
+              let pcd
+              if (this.promoDdiscount.type === 'percent') {
+                pcd = (this.total / 100) * this.promoDdiscount.value
+              } else {
+                pcd = this.promoDdiscount.value
+              }
+              discount = discount + pcd
+            } else {
+              discount = 0
+            }
+            return discount
+          }
           // рахуємо знижку з сайта
           let price = this.prices.find(p => {
             return p.id === this.pricePack
@@ -368,12 +407,26 @@ export default {
           return discount
         }
       },
+      courseform() {
+        if (this.leadType) {
+          return true
+        } else {
+          return false
+        }
+      },
       phoneNum: function() {
                 var str = this.phone;
                 str = str.replace(/[^0-9.]/g, '');
                 str = str.substr(2);
                 return str;
       },
+      getPackId() {
+        if (this.leadType) {
+          return 0
+        } else {
+          return this.pricePack
+        }
+      }
     },
     mounted() {
         this.$store.dispatch('GET_SUBJECTS', this.$ml.current);

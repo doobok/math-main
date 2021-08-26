@@ -9,7 +9,9 @@ use App\Models\Subject;
 use App\Models\City;
 use App\Models\Page;
 use App\Models\Rating;
+use App\Models\Course;
 use Illuminate\Support\Facades\App;
+use Carbon\Carbon;
 
 class PagesController extends Controller
 {
@@ -89,6 +91,23 @@ class PagesController extends Controller
               'reviews' => $reviews,
               'tutors' => $tutors_with_tags,
               'rating' => $rating,
+            ]);
+          };
+
+          // check Course
+          $course = Course::where('slug', $slug)->first();
+          if ($course != null) {
+
+            // $today = Carbon::today();
+            // $start = Carbon::createFromDate($course->next_start);
+
+            $start_date = Carbon::today();
+            $days = $start_date->diffInDays($course->next_start, false);
+
+            return view('pages.course-page', [
+              'page' => $course,
+              'rating' => $rating,
+              'days' => $days,
             ]);
           };
 

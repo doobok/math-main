@@ -299,9 +299,9 @@ export default {
       },
       payLink(u) {
         if (this.$ml.current === 'uk') {
-          return '/uk/pay-page?deal=' + u
+          return '/uk/tutor-pay?deal=' + u
         } else {
-          return '/pay-page?deal=' + u
+          return '/tutor-pay?deal=' + u
         }
       }
     },

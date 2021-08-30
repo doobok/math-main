@@ -5,14 +5,11 @@
 
   @slot('title') {{$page->getTranslatedAttribute('title')}} @endslot
   @slot('description')
-    @if (!$page->description)
-      {{-- fix it --}}
-      {{__('seo.subj-desc', [
-        'text' => $page->getTranslatedAttribute('promodesc')
+      {{__('seo.course-desc', [
+        'text' => $page->getTranslatedAttribute('description'),
+        'phone' => setting('info.phone'),
+        'price' => $page->price,
       ])}}
-    @else
-      {{$page->getTranslatedAttribute('description')}}
-    @endif
   @endslot
   @slot('image') {{ Voyager::image( $page->image ) }} @endslot
   @slot('date') {{$page->created_at}} @endslot

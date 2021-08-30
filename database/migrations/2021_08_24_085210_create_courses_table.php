@@ -18,7 +18,7 @@ class CreateCoursesTable extends Migration
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->string('h1');
-            $table->string('subtitle')->nullable();            
+            $table->string('subtitle')->nullable();
             $table->string('slug')->nullable();
             $table->date('next_start')->nullable();
             $table->integer('lesson_count')->nullable();
@@ -37,6 +37,8 @@ class CreateCoursesTable extends Migration
             $table->text('finish_skills')->nullable();
             $table->text('meta')->nullable();
             $table->string('image')->nullable();
+            $table->boolean('active')->nullable();
+            $table->boolean('published')->nullable();
             $table->timestamps();
         });
     }

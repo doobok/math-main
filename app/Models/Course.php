@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use TCG\Voyager\Traits\Translatable;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\TelegramPubNewCource;
 
 class Course extends Model
 {
@@ -22,6 +24,25 @@ class Course extends Model
       {
           $instance->slug = 'crs-' . $instance->id;
           $instance->save();
+      });
+
+      static::saving(function($instance)
+      {
+        if ($instance->active && $instance->published) {
+          //telegram notification
+          if (setting('services.telegram_notify') == true) {
+            $title = $instance->h1;
+            $subtitle = $instance->title;
+            $text = $instance->meta;
+            $url = config('app.url') . '/' . $instance->slug;
+            $date = $instance->next_start;
+
+            Notification::send('', new TelegramPubNewCource($title, $subtitle, $text, $url, $date));
+
+            $instance->published = null;
+          }
+        }
+
       });
 
       parent::boot();

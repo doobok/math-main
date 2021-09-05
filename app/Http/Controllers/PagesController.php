@@ -10,6 +10,7 @@ use App\Models\City;
 use App\Models\Page;
 use App\Models\Rating;
 use App\Models\Course;
+use App\Models\Price;
 use Illuminate\Support\Facades\App;
 use Carbon\Carbon;
 
@@ -44,6 +45,13 @@ class PagesController extends Controller
             $rating->rating = 5;
             $rating->count = 1;
           }
+      // знаходимо мінімальну ціну
+      $min_multipl = Price::orderBy('multipl')->value('multipl');
+      $index = City::where('active', 1)->orderBy('money_index')->value('money_index');
+        $price = collect();
+        $price->min = $min_multipl * $index;
+        // визначаємо дату до якої діє ціна
+        $price->date = Carbon::today()->endOfMonth()->toDateString();
 
       switch ($slug) {
         // check contacts
@@ -67,6 +75,7 @@ class PagesController extends Controller
           return view('pages.online-page', [
             'page' => Page::where('slug', 'online')->first(),
             'rating' => $rating,
+            'price' => $price,
           ]);
         break;
         // check groups
@@ -74,6 +83,7 @@ class PagesController extends Controller
           return view('pages.groups-page', [
             'page' => Page::where('slug', 'groups')->first(),
             'rating' => $rating,
+            'price' => $price,
           ]);
         break;
 
@@ -95,6 +105,7 @@ class PagesController extends Controller
               'reviews' => $reviews,
               'tutors' => $tutors_with_tags,
               'rating' => $rating,
+              'price' => $price,
             ]);
           };
 

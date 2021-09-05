@@ -135,6 +135,14 @@
 
   @include('layouts.partials.mainpage.todo-block')
 
-  {{-- schema --}}
-      @include('layouts.schema.post-rating')
+{{-- schema --}}
+  @include('layouts.schema.product', [
+    'name' => $page->getTranslatedAttribute('h1'),
+    'description' => $page->getTranslatedAttribute('title'),
+    'image' => Voyager::image( $page->image ),
+    'price' => $price->min,
+    'date' => $price->date,
+    'sku' => $page->slug,
+    'mpn' => $page->slug
+  ])
 @endsection

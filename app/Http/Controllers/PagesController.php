@@ -86,6 +86,16 @@ class PagesController extends Controller
             'price' => $price,
           ]);
         break;
+        // check trial-lesson
+        case 'trial-lesson':
+          $price->current = $index * 6;
+          $price->discount = ($price->current/100) * 90;
+          return view('pages.trial-lesson-page', [
+            'page' => Page::where('slug', 'trial-lesson')->first(),
+            'rating' => $rating,
+            'price' => $price,
+          ]);
+        break;
 
         default:
           // check Subject

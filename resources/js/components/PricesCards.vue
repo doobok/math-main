@@ -14,20 +14,6 @@
       {{$ml.get(button.title)}}
     </button>
   </div>
-  <div class="flex flex-nowrap justify-center mt-4">
-    <button class="bg-gray-400 hover:bg-yellow-400 text-white text-sm font-bold uppercase my-3 py-2 px-4 rounded-l-full outline-none focus:outline-none"
-    v-bind:class="{ 'bg-green-400': packageselector }"
-    @click="packageselector = true"
-    type="button">
-      {{$ml.get('pricePackage')}}
-    </button>
-    <button class="bg-gray-400 hover:bg-yellow-400 text-white text-sm font-bold uppercase my-3 py-2 px-4 rounded-r-full outline-none focus:outline-none"
-    v-bind:class="{ 'bg-green-400': !packageselector }"
-    @click="packageselector = false"
-    type="button">
-      {{$ml.get('priceLesson')}}
-    </button>
-  </div>
 
   <div class="flex flex-col sm:flex-row justify-center md:pt-8 my-12 sm:my-4">
 
@@ -115,6 +101,21 @@
     </template>
   </div>
 
+  <div class="flex flex-nowrap justify-center mt-4">
+    <button class="bg-gray-400 hover:bg-yellow-400 text-white text-sm font-bold uppercase my-3 py-2 px-4 rounded-l-full outline-none focus:outline-none"
+    v-bind:class="{ 'bg-green-400': packageselector }"
+    @click="packageselector = true"
+    type="button">
+      {{$ml.get('pricePackage')}}
+    </button>
+    <button class="bg-gray-400 hover:bg-yellow-400 text-white text-sm font-bold uppercase my-3 py-2 px-4 rounded-r-full outline-none focus:outline-none"
+    v-bind:class="{ 'bg-green-400': !packageselector }"
+    @click="packageselector = false"
+    type="button">
+      {{$ml.get('priceLesson')}}
+    </button>
+  </div>
+
 </div>
 </template>
 
@@ -142,7 +143,7 @@ export default {
         personal: [],
         group: [],
         online: [],
-        packageselector: true,
+        packageselector: false,
       }
   },
   mounted(){

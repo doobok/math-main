@@ -130,6 +130,10 @@
         {{__('main.footnote-prices')}}
       </div>
 
+      <div class="flex justify-center pt-6">
+        @include('layouts.partials.trial-button')
+      </div>
+
     </div>
   </section>
 

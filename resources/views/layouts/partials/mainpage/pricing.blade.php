@@ -34,6 +34,9 @@
     <div class="text-sm pt-4 text-center">
       {{__('main.footnote-prices')}}
     </div>
+    <div class="flex justify-center pt-6">
+      @include('layouts.partials.trial-button')
+    </div>
 
   </div>
 </section>

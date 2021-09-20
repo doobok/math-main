@@ -55,6 +55,7 @@ export default new MLCreate({
         getTutorTitle: 'Заявка на вакансию',
         fillFormTitle: 'Заполните форму и нажмите отправить',
         aboutyou: 'Коротко расскажите о себе, почему хотите стать репетитором',
+        check: 'Проверить',
     }),
 
     new MLanguage('uk').create({
@@ -106,6 +107,7 @@ export default new MLCreate({
         getTutorTitle: 'Заявка на вакансію',
         fillFormTitle: 'Заповніть форму та натисніть відправити',
         aboutyou: 'Коротко розкажіть про себе, чому хочете стати репетитором',
+        check: 'Перевірити',
     }),
 
   ]

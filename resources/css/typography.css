@@ -19,6 +19,9 @@
   article p {
     @apply mb-4 text-justify;
   }
+  article a {
+    @apply text-green-600 hover:text-yellow-500 hover:underline;
+  }
 
   article ul {
     @apply list-disc ml-6 my-3;

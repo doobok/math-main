@@ -96,6 +96,13 @@ class PagesController extends Controller
             'price' => $price,
           ]);
         break;
+        // check refer
+        case 'refer':
+          return view('pages.refer-page', [
+            'page' => Page::where('slug', 'refer')->first(),
+            'rating' => $rating,
+          ]);
+        break;
 
         default:
           // check Subject

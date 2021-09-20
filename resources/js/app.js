@@ -25,6 +25,7 @@ Vue.component('smpl-buttoncrs', require('./components/SimpleButtonCourse.vue').d
 Vue.component('online-button', require('./components/OnlineList.vue').default);
 Vue.component('tutor-button', require('./components/GetTutor.vue').default);
 Vue.component('star-rating', require('./components/StarRating.vue').default);
+Vue.component('refer-balance', require('./components/ReferBalance.vue').default);
 
 const app = new Vue({
     el: '#app',

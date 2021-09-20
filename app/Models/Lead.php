@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Promo;
+use App\Models\Refer;
 use Illuminate\Support\Facades\Log;
 
 class Lead extends Model
@@ -28,11 +29,10 @@ class Lead extends Model
 
         });
 
-        // Обновляем  поиск при изменении
         static::updating(function($instance)
         {
             $item = Lead::where('id', $instance->id)->first();
-
+            // якщо змінився статус
             if ($item->status != $instance->status) {
 
               // змінюємо статус замовлення в retailCRM
@@ -52,7 +52,16 @@ class Lead extends Model
                 } catch (\RetailCrm\Exception\CurlException $e) {
                     // echo "Connection error: " . $e->getMessage();
                 }
-
+              }
+              // якщо відбулась оплата
+              if ($instance->status === 'prepayed') {
+                $refer = Refer::where('code', '=', $instance->promo)->first();
+                if ($refer) {
+                  $summ = $instance->total * 0.05;
+                  $refer->balance = $refer->balance + $summ;
+                  $refer->count++;
+                  $refer->save();
+                }
               }
 
             }

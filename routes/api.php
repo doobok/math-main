@@ -37,4 +37,5 @@ Route::group(['prefix' => 'v1'], function () {
   Route::get('get-rating', 'App\Http\Controllers\RatingController@getRating');
   Route::post('set-rating', 'App\Http\Controllers\RatingController@setRating');
   Route::post('send-vacancy', 'App\Http\Controllers\VacancyController@sendVacancy');
+  Route::get('check-refer-balance', 'App\Http\Controllers\RefersController@checkBalance');
 });

@@ -39,3 +39,8 @@ Route::group(['prefix' => 'v1'], function () {
   Route::post('send-vacancy', 'App\Http\Controllers\VacancyController@sendVacancy');
   Route::get('check-refer-balance', 'App\Http\Controllers\RefersController@checkBalance');
 });
+
+// Public API
+Route::group(['prefix' => 'public'], function () {
+  Route::get('pr-data', 'App\Http\Controllers\API\PromoDataController@globalData');
+});

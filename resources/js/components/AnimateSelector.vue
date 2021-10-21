@@ -2,6 +2,7 @@
   <div class="pt-8 px-4 flex flex-wrap md:flex-nowrap justify-center">
     <div class="flex-grow p-2 leading-3">
       <select v-model="selector"
+      @click="selected"
       @change="selected"
       class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full">
         <option value="" disabled selected hidden>{{paper}}</option>

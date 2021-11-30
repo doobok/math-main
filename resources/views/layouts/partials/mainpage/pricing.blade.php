@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <prices-cards category="personal" pays="{{setting('info.payment')}}"></prices-cards>
+    <prices-cards category="online" pays="{{setting('info.payment')}}"></prices-cards>
 
     <div class="text-sm pt-4 text-center">
       {{__('main.footnote-prices')}}

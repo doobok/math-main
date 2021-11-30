@@ -43,4 +43,5 @@ Route::group(['prefix' => 'v1'], function () {
 // Public API
 Route::group(['prefix' => 'public'], function () {
   Route::get('pr-data', 'App\Http\Controllers\API\PromoDataController@globalData');
+  Route::get('prices-data', 'App\Http\Controllers\API\PromoDataController@pricesData');
 });

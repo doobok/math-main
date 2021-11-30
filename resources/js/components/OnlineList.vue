@@ -36,7 +36,7 @@
                       <p class="text-xl font-semibold flex-grow">
                           {{city.name}}
                       </p>
-                      <a :href="'https://' + city.slug + '.tutor-math.com.ua/online'"
+                      <a :href="'https://' + city.slug + '.tutor-math.com.ua/login'"
                       target="_blank"
                       class="bg-blue-400 hover:bg-green-400 text-white active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none"
                       >

@@ -24,6 +24,7 @@ Route::group(['prefix' => App\Http\Middleware\LocaleMiddleware::getLocale()], fu
   Route::get('/tutor-pay', 'App\Http\Controllers\PaysController@index')->name('pay');
   Route::get('/pay-successful', 'App\Http\Controllers\PaysController@successful')->name('pay-suc');
   Route::get('/sitemap.xml', 'App\Http\Controllers\SitemapController@index')->name('sitemap');
+  Route::get('/blog/{slug}', 'App\Http\Controllers\BlogController@blog')->name('blog');
   Route::get('/{slug}', 'App\Http\Controllers\PagesController@page')->name('page');
 
 

@@ -38,6 +38,7 @@ Route::group(['prefix' => 'v1'], function () {
   Route::post('set-rating', 'App\Http\Controllers\RatingController@setRating');
   Route::post('send-vacancy', 'App\Http\Controllers\VacancyController@sendVacancy');
   Route::get('check-refer-balance', 'App\Http\Controllers\RefersController@checkBalance');
+  Route::get('blog-load', 'App\Http\Controllers\BlogController@loader');
 });
 
 // Public API

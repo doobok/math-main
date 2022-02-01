@@ -3,12 +3,10 @@
 @section('head')
     @component('components.meta')
 
-        @slot('title') {{__('seo.courses-title')}} @endslot
-        @slot('description') {{__('seo.courses-desc', [
-      'phone' => setting('info.phone')
-    ])}} @endslot
-        @slot('image') /courses.jpg @endslot
-        @slot('date') {{config('app.startdate')}} @endslot
+        @slot('title') {{$page->getTranslatedAttribute('title')}} @endslot
+        @slot('description') {{$page->getTranslatedAttribute('description')}} {{__('seo.desc-tail', ['phone' => setting('info.phone')])}}  @endslot
+        @slot('image') {{ Voyager::image( $page->image ) }} @endslot
+        @slot('date') {{$page->created_at}} @endslot
 
     @endcomponent
 @endsection
@@ -16,9 +14,9 @@
 @section('main')
 
     @include('layouts.partials.firstscreen', [
-      'img' => "/courses.jpg",
-      'h1' => __('site.courses'),
-      'desc' => __('site.courses-desc'),
+      'img' => Voyager::image( $page->image ),
+      'h1' => $page->getTranslatedAttribute('h1'),
+      'desc' => $page->getTranslatedAttribute('subtitle'),
     ])
 
     <section class="pb-4 md:pb-8 relative block bg-green-500">
@@ -44,7 +42,7 @@
 
     </section>
 
-    <section class="pb-12 relative block bg-gray-100">
+    <section class="pb-12 relative block bg-white">
         <div
             class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
             style="height: 80px;"
@@ -59,34 +57,44 @@
                 y="0"
             >
                 <polygon
-                    class="text-gray-100 fill-current"
+                    class="text-white fill-current"
                     points="2560 0 2560 100 0 100"
                 ></polygon>
             </svg>
         </div>
-        <div class="container mx-auto px-0 md:px-4 md:pb-12">
+        <div class="container mx-auto px-0 md:px-4 md:pb-12 lg:pb-24">
             <div class="flex justify-center">
-                <div class="w-full xl:w-10/12 px-4 md:px-24">
+                <div class="w-full xl:w-8/12 px-8 md:px-24">
 
                     @component('components.breadcrumbs', [
                       'crumbs' => [
-                          ['', __('site.courses')],
+                          [route('page', 'blog'), __('site.blog')],
+                          ['', $page->getTranslatedAttribute('h1')]
                         ],
                       ])
                     @endcomponent
 
-                    @foreach ($courses as $course)
+                    <article>
+                        <div class="bg-white w-full text-lg md:text-2xl text-gray-800 leading-normal" style="font-family:Georgia,serif;">
 
-                        @include('layouts.partials.course-page.course-intro')
+                            {!! $page->getTranslatedAttribute('text') !!}
 
-                    @endforeach
+                        </div>
+                    </article>
 
+                    <star-rating
+                        id="rating"
+                        slug="{{$page->slug}}"
+                    ></star-rating>
 
                 </div>
             </div>
+
         </div>
     </section>
 
-    @include('layouts.partials.mainpage.todo-block')
+        @include('layouts.partials.mainpage.todo-block')
 
+    {{-- schema --}}
+{{--    @include('layouts.schema.post-rating')--}}
 @endsection

@@ -21,6 +21,8 @@ const tailwindcss = require('tailwindcss');
      require('autoprefixer'),
  ]);
 
+mix.browserSync('http://tm.cam');
+
  if (mix.inProduction()) {
      mix.version();
  }

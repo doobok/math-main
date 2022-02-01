@@ -117,7 +117,7 @@
     'name' => $page->getTranslatedAttribute('h1'),
     'description' => $page->getTranslatedAttribute('promodesc'),
     'image' => Voyager::image( $page->image ),
-    'price' => $price->min,
+    'price' => $price->minimal,
     'date' => $price->date,
     'sku' => $page->slug,
     'mpn' => $page->slug

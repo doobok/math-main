@@ -3,11 +3,11 @@
 @section('head')
     @component('components.meta')
 
-        @slot('title') {{__('seo.courses-title')}} @endslot
-        @slot('description') {{__('seo.courses-desc', [
+        @slot('title') {{__('seo.blog-title')}} @endslot
+        @slot('description') {{__('seo.blog-desc', [
       'phone' => setting('info.phone')
     ])}} @endslot
-        @slot('image') /courses.jpg @endslot
+        @slot('image') /blog.jpg @endslot
         @slot('date') {{config('app.startdate')}} @endslot
 
     @endcomponent
@@ -16,9 +16,9 @@
 @section('main')
 
     @include('layouts.partials.firstscreen', [
-      'img' => "/courses.jpg",
-      'h1' => __('site.courses'),
-      'desc' => __('site.courses-desc'),
+      'img' => "/blog.jpg",
+      'h1' => 'B L O G',
+      'desc' => __('site.blog-desc'),
     ])
 
     <section class="pb-4 md:pb-8 relative block bg-green-500">
@@ -70,17 +70,12 @@
 
                     @component('components.breadcrumbs', [
                       'crumbs' => [
-                          ['', __('site.courses')],
+                          ['', __('site.blog')],
                         ],
                       ])
                     @endcomponent
 
-                    @foreach ($courses as $course)
-
-                        @include('layouts.partials.course-page.course-intro')
-
-                    @endforeach
-
+                    <blog-list lang="{{app()->getLocale()}}"></blog-list>
 
                 </div>
             </div>

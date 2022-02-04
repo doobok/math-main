@@ -40,6 +40,9 @@
         </p>
 
         <smpl-button clr="red" txt="👉 {{__('main.todo-btn')}}"></smpl-button>
+        <a href="{{route('page', 'trial-lesson')}}#prices"
+           class="text-white bg-blue-400 active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+        >{{__('main.get-trial')}}</a>
 
         <p class="text-base leading-relaxed mt-8 mb-4 text-gray-100">{{__('main.todo-aftertext')}}</p>
     </div>

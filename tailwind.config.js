@@ -8,10 +8,15 @@ module.exports = {
     ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+      latex: {
+          footnotes: true,
+          syntax: true,
+      },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    // require("latex-tailwind")
+  ],
 }

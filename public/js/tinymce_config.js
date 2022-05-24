@@ -25,7 +25,7 @@ function tinymce_init_callback(editor) {
         image_caption: true,
         image_title: true,
         paste_as_text: true,
-        valid_elements: 'p[*],ul[*],li[*],ol[*],hr,br,img[*],-b,-i,-u,-h2,-h3,-h4,-h5,-h6',
+        valid_elements: 'p[*],ul[*],li[*],ol[*],hr,br,img[*],-strong,-del,-mark,-b,-i,-u,-h2,-h3,-h4,-h5,-h6',
         valid_children: '+li[p]',
         external_plugins: {
             // 'latex': '/tinymce-plugins/latex/plugin.js',

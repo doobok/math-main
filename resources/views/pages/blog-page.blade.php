@@ -80,6 +80,11 @@
                             {!! $page->getTranslatedAttribute('text') !!}
 
                         </div>
+                        @isset($page->youtube)
+                            <div id="youtube" class="aspect-w-16 aspect-h-9 mt-8">
+                                <iframe src="https://www.youtube.com/embed/{{$page->youtube}}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        @endisset
                     </article>
 
                     <star-rating

@@ -6,7 +6,7 @@ return [
     'gacode' => env('GA_CODE', null),
     'telegramchat' => env('TELEGRAM_CHAT', null),//чат для сповіщень
     'telegramadmin' => env('TELEGRAM_ADMIN', null),//директор
-    'telegram_public' => env('TELEGRAM_PUBLIC', null),//публічний канал 
+    'telegram_public' => env('TELEGRAM_PUBLIC', null),//публічний канал
     'retailcrm_url' => env('RETAILCRM_URL', null),
     'retailcrm_api' => env('RETAILCRM_API', null),
 
@@ -183,8 +183,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         // My providers
-        // WayForPay
-        Maksa988\WayForPay\WayForPayServiceProvider::class,
 
     ],
 
@@ -238,7 +236,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'WayForPay' => Maksa988\WayForPay\Facades\WayForPay::class,
 
     ],
 

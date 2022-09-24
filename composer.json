@@ -8,23 +8,22 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.4|^8.0.2",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "laravel-notification-channels/telegram": "^0.5.1",
-        "laravel/framework": "^8.40",
+        "laravel-notification-channels/telegram": "^2.1.0",
+        "laravel/framework": "^9.3",
         "laravel/tinker": "^2.5",
-        "maksa988/laravel-wayforpay": "^1.0",
         "retailcrm/api-client-php": "~5.0",
         "tcg/voyager": "^1.4"
     },
     "require-dev": {
-        "facade/ignition": "^2.5",
+        "spatie/laravel-ignition": "^1.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
-        "nunomaduro/collision": "^5.0",
+        "nunomaduro/collision": "^6.0",
         "phpunit/phpunit": "^9.3.3"
     },
     "autoload": {

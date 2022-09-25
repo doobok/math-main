@@ -80,9 +80,9 @@ class WayForPay
             'productPrice' => $this->productPrice,
             'productCount' => [1],
 
-            'clientFirstName' => $this->client['firstname'],
-            'clientLastName' => $this->client['lastname'],
-            'clientPhone' => $this->client['phone'],
+            'clientFirstName' => $this->client['firstname'] ?? null,
+            'clientLastName' => $this->client['lastname'] ?? null,
+            'clientPhone' => $this->client['phone'] ?? null,
         );
     }
 

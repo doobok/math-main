@@ -12,7 +12,23 @@ class Lead extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['firstname', 'lastname', 'cityId', 'phone', 'klass', 'subjectId', 'priceId', 'cost', 'discount', 'total', 'promoStatus', 'promo', 'marker', 'fullForm'];
+    protected $fillable = [
+        'firstname',
+        'lastname',
+        'cityId',
+        'phone',
+        'klass',
+        'subjectId',
+        'priceId',
+        'cost',
+        'discount',
+        'total',
+        'promoStatus',
+        'promo',
+        'marker',
+        'fullForm',
+        'status'
+    ];
 
     protected static function boot()
     {
@@ -35,24 +51,24 @@ class Lead extends Model
             // якщо змінився статус
             if ($item->status != $instance->status) {
 
-              // змінюємо статус замовлення в retailCRM
-              if (setting('services.retailcrm_on') == true) {
-
-                $client = new \RetailCrm\ApiClient(
-                    config('app.retailcrm_url'),
-                    config('app.retailcrm_api'),
-                    \RetailCrm\ApiClient::V4
-                );
-                try {
-                    $response = $client->request->ordersEdit(array(
-                        'externalId' => 'tm' . $instance->id, // Зовнішній ID
-                        'status' => $instance->status,
-
-                    ));
-                } catch (\RetailCrm\Exception\CurlException $e) {
-                    // echo "Connection error: " . $e->getMessage();
-                }
-              }
+//              // змінюємо статус замовлення в retailCRM
+//              if (setting('services.retailcrm_on') == true) {
+//
+//                $client = new \RetailCrm\ApiClient(
+//                    config('app.retailcrm_url'),
+//                    config('app.retailcrm_api'),
+//                    \RetailCrm\ApiClient::V4
+//                );
+//                try {
+//                    $response = $client->request->ordersEdit(array(
+//                        'externalId' => 'tm' . $instance->id, // Зовнішній ID
+//                        'status' => $instance->status,
+//
+//                    ));
+//                } catch (\RetailCrm\Exception\CurlException $e) {
+//                    // echo "Connection error: " . $e->getMessage();
+//                }
+//              }
               // якщо відбулась оплата
               if ($instance->status === 'prepayed') {
                 $refer = Refer::where('code', '=', $instance->promo)->first();

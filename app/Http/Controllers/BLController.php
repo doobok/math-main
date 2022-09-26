@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\LeadJob;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\City;
 use App\Models\Subject;
@@ -123,79 +125,21 @@ class BLController extends Controller
       return $data;
     }
 
-    // LEAD code
-    //
-    // SEnd Lead
-    public function sendLead(Request $request)
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function sendLead(Request $request): JsonResponse
     {
+        $request->merge([
+            'total' => $request->input('cost') -  $request->input('discount'),
+            'status' => 'new',
+        ]);
+
        $lead = Lead::create($request->all());
 
-       $lead->total = $lead->cost - $lead->discount;
-       $lead->status = 'new';
-       $lead->save();
-
-       // формируем сообщение
-        $phone = '+38' . $request->phone;
-        $marker = $request->marker;
-        $name = 'id: ' . $lead->id . ' ' . $request->firstname . ' ' . $request->lastname;
-        $cityId = $request->cityId;
-        if ($cityId) {
-          $cityId = City::where('id', $cityId)->value('name');
-        }
-        $subjectId = $request->subjectId;
-        if ($subjectId) {
-          $subjectId = Subject::where('id', $subjectId)->value('name');
-        }
-        $priceId = $request->priceId;
-        if ($priceId) {
-          $priceId = Price::where('id', $priceId)->value('name');
-        }
-        $klass = $request->klass;
-        $cost = $request->cost;
-        $discount = $request->discount;
-        $total = $cost - $discount;
-        $promo = $request->promo;
-        $promoStatus = $request->promoStatus;
-        $fullForm = $request->fullForm;
-
-        //telegram notification
-        if (setting('services.telegram_notify')) {
-          Notification::send('', new TelegramNewLead($marker, $phone, $name, $cityId, $subjectId, $priceId, $klass, $cost, $discount, $total, $promo, $promoStatus, $fullForm));
-        }
-
-//        // отправляем в retailCRM
-//        if (setting('services.retailcrm_on') == true) {
-//
-//          $client = new \RetailCrm\ApiClient(
-//              config('app.retailcrm_url'),
-//              config('app.retailcrm_api'),
-//              \RetailCrm\ApiClient::V4
-//          );
-//
-//          try {
-//              $response = $client->request->ordersCreate(array(
-//                  // 'summ' => $request->price, //цена
-//                  'externalId' => 'tm' . $lead->id, // Зовнішній ID заказа
-//                  'phone' => $phone, // телефон
-//                  'firstName' => $request->firstname, // Імʼя
-//                  'lastName' => $request->lastname, // Прізвище
-//                  'customerComment' => $subjectId . ' ' . $priceId, // тайтл кнопки
-//                  'discount' => $discount, // скидка
-//                  'items' => array(
-//                    array(
-//                      'initialPrice' => $cost, // цена заказа
-//                    )
-//                  ),
-//                  'customFields' => array(
-//                      'us_city' => $cityId,
-//                      'us_class' => $klass
-//                  )
-//              ));
-//          } catch (\RetailCrm\Exception\CurlException $e) {
-//              // echo "Connection error: " . $e->getMessage();
-//          }
-//
-//        }
+        LeadJob::dispatch($lead);
 
        return response()->json(['success' => true, 'id' => $lead->id,  'total' => $lead->total,]);
     }

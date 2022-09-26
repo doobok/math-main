@@ -8,7 +8,6 @@ use App\Models\Subject;
 use App\Models\Price;
 use App\Models\Promo;
 use App\Models\Lead;
-use Illuminate\Support\Facades\App;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\TelegramNewLead;
@@ -20,12 +19,12 @@ class BLController extends Controller
     //Get cities
     public function getCityes(Request $request)
     {
-      return City::where('active', 1)->orderBy('order')->get()->translate( $request->locale );
+      return City::where('active', 1)->orderBy('order')->get()->translate( $request->input('locale') );
     }
     //Get main city
     public function getCity(Request $request)
     {
-      $city = City::where('active', 1)->orderBy('order')->first()->translate( $request->locale );
+      $city = City::where('active', 1)->orderBy('order')->first()->translate( $request->input('locale') );
       return $city;
     }
     //Get main city by ID
@@ -37,7 +36,7 @@ class BLController extends Controller
           return self::getCity($request);
         }
 
-      return $city->translate( $request->locale );
+      return $city->translate( $request->input('locale') );
     }
 
     // Subjects BLOCK
@@ -45,7 +44,7 @@ class BLController extends Controller
     // Get subjects labels
     public function getSubjectsNames(Request $request)
     {
-      return Subject::where('active', 1)->select('id', 'h1', 'name')->get()->translate( $request->locale );
+      return Subject::where('active', 1)->select('id', 'h1', 'name')->get()->translate( $request->input('locale') );
     }
 
     // Price BLOCK
@@ -54,9 +53,9 @@ class BLController extends Controller
     //Get main city
     public function getPrices(Request $request)
     {
-      $personal = Price::where('active', 1)->where('group', 1)->orderBy('count')->limit(3)->get()->translate( $request->locale );
-      $group = Price::where('active', 1)->where('group', 2)->orderBy('count')->limit(3)->get()->translate( $request->locale );
-      $online = Price::where('active', 1)->where('group', 3)->orderBy('count')->limit(3)->get()->translate( $request->locale );
+      $personal = Price::where('active', 1)->where('group', 1)->orderBy('count')->limit(3)->get()->translate( $request->input('locale') );
+      $group = Price::where('active', 1)->where('group', 2)->orderBy('count')->limit(3)->get()->translate( $request->input('locale') );
+      $online = Price::where('active', 1)->where('group', 3)->orderBy('count')->limit(3)->get()->translate( $request->input('locale') );
 
       $data = [
         'personal' => $personal,
@@ -69,7 +68,7 @@ class BLController extends Controller
     // get prices list
     public function getPricesList(Request $request)
     {
-      return Price::where('active', 1)->orderBy('group')->orderBy('count')->get()->translate( $request->locale );
+      return Price::where('active', 1)->orderBy('group')->orderBy('count')->get()->translate( $request->input('locale') );
     }
 
     // PROMO code
@@ -160,50 +159,50 @@ class BLController extends Controller
         $fullForm = $request->fullForm;
 
         //telegram notification
-        if (setting('services.telegram_notify') == true) {
+        if (setting('services.telegram_notify')) {
           Notification::send('', new TelegramNewLead($marker, $phone, $name, $cityId, $subjectId, $priceId, $klass, $cost, $discount, $total, $promo, $promoStatus, $fullForm));
         }
 
-        // отправляем в retailCRM
-        if (setting('services.retailcrm_on') == true) {
-
-          $client = new \RetailCrm\ApiClient(
-              config('app.retailcrm_url'),
-              config('app.retailcrm_api'),
-              \RetailCrm\ApiClient::V4
-          );
-
-          try {
-              $response = $client->request->ordersCreate(array(
-                  // 'summ' => $request->price, //цена
-                  'externalId' => 'tm' . $lead->id, // Зовнішній ID заказа
-                  'phone' => $phone, // телефон
-                  'firstName' => $request->firstname, // Імʼя
-                  'lastName' => $request->lastname, // Прізвище
-                  'customerComment' => $subjectId . ' ' . $priceId, // тайтл кнопки
-                  'discount' => $discount, // скидка
-                  'items' => array(
-                    array(
-                      'initialPrice' => $cost, // цена заказа
-                    )
-                  ),
-                  'customFields' => array(
-                      'us_city' => $cityId,
-                      'us_class' => $klass
-                  )
-              ));
-          } catch (\RetailCrm\Exception\CurlException $e) {
-              // echo "Connection error: " . $e->getMessage();
-          }
-
-        }
+//        // отправляем в retailCRM
+//        if (setting('services.retailcrm_on') == true) {
+//
+//          $client = new \RetailCrm\ApiClient(
+//              config('app.retailcrm_url'),
+//              config('app.retailcrm_api'),
+//              \RetailCrm\ApiClient::V4
+//          );
+//
+//          try {
+//              $response = $client->request->ordersCreate(array(
+//                  // 'summ' => $request->price, //цена
+//                  'externalId' => 'tm' . $lead->id, // Зовнішній ID заказа
+//                  'phone' => $phone, // телефон
+//                  'firstName' => $request->firstname, // Імʼя
+//                  'lastName' => $request->lastname, // Прізвище
+//                  'customerComment' => $subjectId . ' ' . $priceId, // тайтл кнопки
+//                  'discount' => $discount, // скидка
+//                  'items' => array(
+//                    array(
+//                      'initialPrice' => $cost, // цена заказа
+//                    )
+//                  ),
+//                  'customFields' => array(
+//                      'us_city' => $cityId,
+//                      'us_class' => $klass
+//                  )
+//              ));
+//          } catch (\RetailCrm\Exception\CurlException $e) {
+//              // echo "Connection error: " . $e->getMessage();
+//          }
+//
+//        }
 
        return response()->json(['success' => true, 'id' => $lead->id,  'total' => $lead->total,]);
     }
 
     public function getMenu(Request $request)
     {
-      return menu('main_menu', '_json')->translate( $request->locale );
+      return menu('main_menu', '_json')->translate( $request->input('locale') );
     }
 
 

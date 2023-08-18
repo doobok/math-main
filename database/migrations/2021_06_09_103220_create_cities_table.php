@@ -18,6 +18,8 @@ class CreateCitiesTable extends Migration
             $table->string('name');
             $table->string('name_case');
             $table->string('slug');
+            $table->boolean('active')->default(true);
+            $table->unsignedInteger('discount')->nullable();
             $table->integer('money_index');
             $table->integer('order');
             $table->string('address');

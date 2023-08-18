@@ -27,6 +27,7 @@ Vue.component('tutor-button', require('./components/GetTutor.vue').default);
 Vue.component('star-rating', require('./components/StarRating.vue').default);
 Vue.component('refer-balance', require('./components/ReferBalance.vue').default);
 Vue.component('blog-list', require('./components/BlogList.vue').default);
+Vue.component('lang-detector', require('./components/LanguageDetector.vue').default);
 
 const app = new Vue({
     el: '#app',

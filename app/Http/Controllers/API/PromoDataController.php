@@ -11,8 +11,9 @@ use App\Models\City;
 class PromoDataController extends Controller
 {
     // Глобальные данные для лендингов
-    public function globalData()
+    public function globalData(Request $request)
     {
+        $language = $request->input('language', 'ru');
 
         $social = collect([
             "f" => setting('social.fb'),
@@ -21,9 +22,17 @@ class PromoDataController extends Controller
             "t" => setting('social.telegram'),
         ]);
 
-        $prices = Price::where('active', 1)->select('id', 'name', 'group', 'multipl', 'count')->get();
+        $prices = Price::where('active', 1)
+            ->select('id', 'name', 'group', 'multipl', 'count')
+            ->get()
+            ->translate($language);
 
-        $tutors = Tutor::where('active', 1)->select('name', 'image', 'text')->orderBy('order')->limit(4)->get();
+        $tutors = Tutor::where('active', 1)
+            ->select('id', 'name', 'image', 'text')
+            ->orderBy('order')
+            ->limit(4)
+            ->get()
+            ->translate($language);
 
         // global variables
         $mindex = City::where('id', 1)->value('money_index');

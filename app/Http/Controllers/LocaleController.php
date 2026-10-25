@@ -15,7 +15,7 @@ class LocaleController extends Controller
         $segments = explode('/', $parse_url);
 
         //Если URL (где нажали на переключение языка) содержал корректную метку языка
-        if (in_array($segments[1], \App\Http\Middleware\LocaleMiddleware::$languages)) {
+        if (isset($segments[1]) && in_array($segments[1], \App\Http\Middleware\LocaleMiddleware::$languages)) {
 
             unset($segments[1]); //удаляем метку
         }

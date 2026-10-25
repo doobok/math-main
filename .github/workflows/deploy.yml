@@ -1,0 +1,31 @@
+name: deploy
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency: deploy-production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: SSH key
+        run: |
+          install -m 700 -d ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          echo "${{ secrets.DEPLOY_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+
+      - name: Upload release
+        run: |
+          echo "REL=/var/www/tm/releases/$(date -u +%Y%m%d%H%M%S)" >> "$GITHUB_ENV"
+          echo "TARGET=${{ secrets.DEPLOY_TARGET }}" >> "$GITHUB_ENV"
+
+      - run: rsync -az --exclude .git --exclude .github --exclude node_modules ./ "$TARGET:$REL/"
+
+      - name: Activate
+        run: ssh "$TARGET" "bash $REL/deploy/activate.sh $REL ${{ github.sha }}"

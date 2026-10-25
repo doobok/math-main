@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "72e49b0febd7782864bcb791c03255f4",
+    "content-hash": "739eb13f24f2d74606550968ddfcec6c",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -2515,12 +2515,12 @@
             "version": "2.62.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/briannesbitt/Carbon.git",
+                "url": "https://github.com/CarbonPHP/carbon.git",
                 "reference": "01bc4cdefe98ef58d1f9cb31bdbbddddf2a88f7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/01bc4cdefe98ef58d1f9cb31bdbbddddf2a88f7a",
+                "url": "https://api.github.com/repos/CarbonPHP/carbon/zipball/01bc4cdefe98ef58d1f9cb31bdbbddddf2a88f7a",
                 "reference": "01bc4cdefe98ef58d1f9cb31bdbbddddf2a88f7a",
                 "shasum": ""
             },
@@ -5957,12 +5957,12 @@
             "version": "1.6.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/the-control-group/voyager.git",
+                "url": "https://github.com/thedevdojo/voyager.git",
                 "reference": "2812898464f279e14ad6e9f89e2e8bf992e00c91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/2812898464f279e14ad6e9f89e2e8bf992e00c91",
+                "url": "https://api.github.com/repos/thedevdojo/voyager/zipball/2812898464f279e14ad6e9f89e2e8bf992e00c91",
                 "reference": "2812898464f279e14ad6e9f89e2e8bf992e00c91",
                 "shasum": ""
             },
@@ -6102,12 +6102,12 @@
             "version": "v5.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/vlucas/phpdotenv.git",
+                "url": "https://github.com/phpdotenv/phpdotenv.git",
                 "reference": "264dce589e7ce37a7ba99cb901eed8249fbec92f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/264dce589e7ce37a7ba99cb901eed8249fbec92f",
+                "url": "https://api.github.com/repos/phpdotenv/phpdotenv/zipball/264dce589e7ce37a7ba99cb901eed8249fbec92f",
                 "reference": "264dce589e7ce37a7ba99cb901eed8249fbec92f",
                 "shasum": ""
             },
@@ -8689,12 +8689,12 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.4|^8.0.2"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }

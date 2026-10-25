@@ -92,8 +92,8 @@ class PagesController extends Controller
                 break;
             // check trial-lesson
             case 'trial-lesson':
-                $price->current = $index * 6;
-                $price->discount = ($price->current / 100) * 90;
+                $price->current = 750;
+                $price->discount = 599;
                 return view('pages.trial-lesson-page', [
                     'page' => Page::where('slug', 'trial-lesson')->first(),
                     'rating' => $rating,
